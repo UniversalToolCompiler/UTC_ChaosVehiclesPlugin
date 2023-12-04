@@ -4,6 +4,8 @@
 
 Check the plugin wiki [here](https://github.com/UniversalToolCompiler/UTC_ChaosVehiclesPlugin/wiki/Chaos-Vehicles-Plugin:-What's-new-%3F) to see the changes.
 
+***
+
 ### Tutorial:
 
 This plugin is based on the Chaos Vehicles Plugin from Epic Games and is developed for 5.3. [Doc](https://docs.unrealengine.com/5.3/en-US/how-to-set-up-vehicles-in-unreal-engine/)
@@ -14,6 +16,7 @@ To use this plugin, you need to install Unreal Engine 5.3 from source: [Doc](htt
 
 After installing Unreal, copy/paste the `Engine` folder from `Engine Plugins -> Modified` to the UE5 engine source folder.
 
+***
 
 ### Inputs:
 
