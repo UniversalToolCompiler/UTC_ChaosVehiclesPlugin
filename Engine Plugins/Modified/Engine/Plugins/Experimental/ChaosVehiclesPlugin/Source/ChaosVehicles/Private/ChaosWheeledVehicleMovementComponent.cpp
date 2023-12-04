@@ -296,7 +296,7 @@ void UChaosWheeledVehicleSimulation::UpdateSimulation(float DeltaTime, const FCh
 			ApplyWheelFrictionForces(DeltaTime);
 		}
 		
-		//UTC_Debug(InputData.PhysicsInputs.NetworkInputs.VehicleInputs);
+		UTC_Debug(InputData.PhysicsInputs.NetworkInputs.VehicleInputs);
 #if 0
 		if (PerformanceMeasure.IsEnabled())
 		{
