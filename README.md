@@ -2,7 +2,7 @@
 
 ### What's new:
 
-Check the plugin wiki [here](https://github.com/UniversalToolCompiler/UTC_ChaosVehiclesPlugin/wiki/Chaos-Vehicles-Plugin:-What's-new-%3F) to see the changes.
+Check out the plugin wiki [here](https://github.com/UniversalToolCompiler/UTC_ChaosVehiclesPlugin/wiki/Chaos-Vehicles-Plugin:-What's-new-%3F) to see the changes.
 
 ***
 
