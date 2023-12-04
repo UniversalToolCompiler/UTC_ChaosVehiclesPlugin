@@ -29,3 +29,10 @@ After installing Unreal, copy/paste the `Engine` folder from `Engine Plugins -> 
 | Gear Up | X | A |
 | Gear Down | Z | X |
 | Start/Stop Engine | V | Down Arrow |
+
+
+*** 
+
+<p align="center">
+<img src="https://github.com/UniversalToolCompiler/UTC_ChaosVehiclesPlugin/blob/1.0-UE5.3/Resources/Gifs/MechanicalAnim.gif">
+</p>
