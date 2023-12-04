@@ -11,6 +11,7 @@ void FDeferredForces::AddForce(Chaos::FRigidBodyHandle_Internal* RigidHandle, co
 	if (ensure(RigidHandle))
 	{
 		Chaos::EObjectStateType ObjectState = RigidHandle->ObjectState();
+
 		if (CHAOS_ENSURE(ObjectState == Chaos::EObjectStateType::Dynamic || ObjectState == Chaos::EObjectStateType::Sleeping))
 		{
 			if ((DataIn.Flags & EForceFlags::AccelChange) == EForceFlags::AccelChange)

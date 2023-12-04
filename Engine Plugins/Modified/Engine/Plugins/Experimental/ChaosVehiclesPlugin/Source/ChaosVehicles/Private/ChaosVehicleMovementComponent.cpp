@@ -39,6 +39,7 @@
 #include "Chaos/ParticleHandleFwd.h"
 #include "PhysicsProxy/SingleParticlePhysicsProxy.h"
 #include "PBDRigidsSolver.h"
+#include "SimModule/SimulationModuleBase.h"
 
 
 #define LOCTEXT_NAMESPACE "UVehicleMovementComponent"
@@ -353,6 +354,7 @@ void UChaosVehicleSimulation::ApplyAerofoilForces(float DeltaTime)
 
 void UChaosVehicleSimulation::ApplyThrustForces(float DeltaTime)
 {
+
 	if (GVehicleDebugParams.DisableThrusters || RigidHandle == nullptr)
 		return;
 
@@ -597,6 +599,8 @@ void UChaosVehicleSimulation::InitializeSuspension(int WheelIndex, const Chaos::
 UChaosVehicleMovementComponent::UChaosVehicleMovementComponent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	bEngineStarterRunning = false;
+	bEngineIsStarted = true;
 	bReverseAsBrake = true;
 	bParkEnabled = false;
 	Mass = 1500.0f;
@@ -643,6 +647,8 @@ UChaosVehicleMovementComponent::UChaosVehicleMovementComponent(const FObjectInit
 	YawInputRate.FallRate = 10.0f;
 	YawInputRate.InputCurveFunction = EInputFunctionType::LinearFunction;
 	TransmissionType = Chaos::ETransmissionType::Automatic;
+	bUseClutch = false;
+	
 
 	SetIsReplicatedByDefault(true);
 	bUsingNetworkPhysicsPrediction = Chaos::FPhysicsSolverBase::IsNetworkPhysicsPredictionEnabled();
@@ -830,6 +836,8 @@ void UChaosVehicleMovementComponent::PreTickGT(float DeltaTime)
 		ControlInputs.PitchInput = PitchInput;
 		ControlInputs.YawInput = YawInput;
 		ControlInputs.ParkingEnabled = bParkEnabled;
+		ControlInputs.RunEngineStarter = bEngineStarterRunning;
+		ControlInputs.EngineStarted = bEngineIsStarted;
 		ProcessSleeping(ControlInputs);
 	}
 	else
@@ -974,6 +982,61 @@ void UChaosVehicleMovementComponent::SetRequiresControllerForInputs(bool bRequir
 	bRequiresControllerForInputs = bRequiresController;
 }
 
+void UChaosVehicleMovementComponent::RunEngineStarter(bool bRunEngineStarter, float DeltaTime)
+{
+	auto& PEngine = VehicleSimulationPT->PVehicle->GetEngine();
+	auto& PTransmission = VehicleSimulationPT->PVehicle->GetTransmission();
+	
+	if(!bEngineStateChanged) /** ensure user doesn't keep starter input pressed */ 
+	{
+		if(GetIsEngineStarted() && EngineStarterTimer == 0.f) /** If engine already started -> turn off engine */
+		{
+			SetStartEngine(false);
+			bEngineStarterRunning = false;
+			bEngineStateChanged = true;
+		}
+		else
+		{
+			if(bRunEngineStarter) /** When user trying to start the engine */
+			{
+				bEngineStarterRunning = true;
+				EngineStarterTimer += DeltaTime;
+				
+				bool bRPMUnderSlippingPoint = PEngine.GetEngineRPM() < PEngine.Setup().EngineSlippingPoint;
+				bool bAutoGear = PTransmission.SetupPtr->TransmissionType == Chaos::Automatic;
+				bool FreeRunning = GetCurrentGear() == 0.f;
+				
+				float EngineIgnitionDuration = VehicleSimulationPT->PVehicle->GetEngine().SetupPtr->EngineIgnitionDuration;
+
+				/** Loop initalization if RPM speed is too low */ 
+				if( (!FreeRunning && bRPMUnderSlippingPoint) && !bAutoGear)
+				{
+					EngineStarterTimer = FMath::Min(EngineStarterTimer, EngineIgnitionDuration);
+				}
+
+				if(EngineStarterTimer > EngineIgnitionDuration && (FreeRunning || !bRPMUnderSlippingPoint || bAutoGear) ) /** Start the engine */
+				{
+					SetStartEngine(true);
+					bEngineStarterRunning = false;
+					bEngineStateChanged = true;
+				}
+			}
+		}
+	}
+
+	if(!bRunEngineStarter) /** Clear var when starter input is released */
+	{
+		EngineStarterTimer = 0.f;
+		bEngineStarterRunning = false;
+		bEngineStateChanged = false;
+	}
+}
+
+void UChaosVehicleMovementComponent::SetStartEngine(bool bStartEngine)
+{
+	bEngineIsStarted = bStartEngine;
+}
+
 // Data access
 
 int32 UChaosVehicleMovementComponent::GetCurrentGear() const
@@ -989,6 +1052,11 @@ int32 UChaosVehicleMovementComponent::GetTargetGear() const
 bool UChaosVehicleMovementComponent::GetUseAutoGears() const
 {
 	return (TransmissionType == Chaos::ETransmissionType::Automatic);
+}
+
+bool UChaosVehicleMovementComponent::GetUseClutch() const
+{
+	return bUseClutch;
 }
 
 float UChaosVehicleMovementComponent::GetForwardSpeed() const
@@ -1017,70 +1085,78 @@ void UChaosVehicleMovementComponent::CalcThrottleBrakeInput(float& ThrottleOut, 
 	BrakeOut = RawBrakeInput;
 	ThrottleOut = RawThrottleInput;
 
-	if (bReverseAsBrake)
+	if(GetIsEngineStarted())
 	{
-		if (RawThrottleInput > 0.f)
+		if (bReverseAsBrake)
 		{
-			// car moving backwards but player wants to move forwards...
-			// if vehicle is moving backwards, then press brake	
-			if (bThrottleAsBrake && VehicleState.ForwardSpeed < -WrongDirectionThreshold)
+			if (RawThrottleInput > 0.f)
 			{
-				BrakeOut = 1.0f;
-				ThrottleOut = 0.0f;
-			}
+				// car moving backwards but player wants to move forwards...
+				// if vehicle is moving backwards, then press brake	
+				if (bThrottleAsBrake && VehicleState.ForwardSpeed < -WrongDirectionThreshold)
+				{
+					BrakeOut = 1.0f;
+					ThrottleOut = 0.0f;
+				}
 
-		}
-		else if (RawBrakeInput > 0.f)
-		{
-			// car moving forwards but player wants to move backwards...
-			// if vehicle is moving forwards, then press brake
-			if (VehicleState.ForwardSpeed > WrongDirectionThreshold)
-			{
-				BrakeOut = 1.0f;
-				ThrottleOut = 0.0f;
 			}
-			else if (GetTargetGear() < 0)
+			else if (RawBrakeInput > 0.f)
+			{
+				// car moving forwards but player wants to move backwards...
+				// if vehicle is moving forwards, then press brake
+				if (VehicleState.ForwardSpeed > WrongDirectionThreshold)
+				{
+					BrakeOut = 1.0f;
+					ThrottleOut = 0.0f;
+				}
+				else if (GetTargetGear() < 0)
+				{
+					ThrottleOut = RawBrakeInput;
+					BrakeOut = 0.0f;
+				}
+			}
+			// straight reversing
+			else if (RawBrakeInput > 0.f && GetTargetGear() < 0)
 			{
 				ThrottleOut = RawBrakeInput;
-				BrakeOut = 0.0f;
-			}
-		}
-		// straight reversing
-		else if (RawBrakeInput > 0.f && GetTargetGear() < 0)
-		{
-			ThrottleOut = RawBrakeInput;
-		}
-		else
-		{
-			// if player isn't pressing forward or backwards...
-			if (VehicleState.ForwardSpeed < StopThreshold && VehicleState.ForwardSpeed > -StopThreshold)	//auto brake 
-			{
-				BrakeOut = 1.f;
 			}
 			else
 			{
-				BrakeOut = IdleBrakeInput;
+				// if player isn't pressing forward or backwards...
+				if (VehicleState.ForwardSpeed < StopThreshold && VehicleState.ForwardSpeed > -StopThreshold)	//auto brake 
+				{
+					BrakeOut = 1.f;
+				}
+				else
+				{
+					BrakeOut = IdleBrakeInput;
+				}
+			}
+
+			ThrottleOut = FMath::Clamp<float>(ThrottleOut, 0.0, 1.0);
+			BrakeOut = FMath::Clamp<float>(BrakeOut, 0.0, 1.0);
+		}
+		else
+		{
+			BrakeOut = FMath::Abs(RawBrakeInput);
+
+			// if player isn't pressing forward or backwards...
+			if (RawBrakeInput < SMALL_NUMBER && RawThrottleInput < SMALL_NUMBER)
+			{
+				if (VehicleState.ForwardSpeed < StopThreshold && VehicleState.ForwardSpeed > -StopThreshold)	//auto brake
+				{
+					BrakeOut = 1.f;
+				}
 			}
 		}
-
-		ThrottleOut = FMath::Clamp<float>(ThrottleOut, 0.0, 1.0);
+	}
+	else /** engine turned off */
+	{
+		BrakeOut = RawBrakeInput;
+		ThrottleOut = .0f;
+		
 		BrakeOut = FMath::Clamp<float>(BrakeOut, 0.0, 1.0);
 	}
-	else
-	{
-		BrakeOut = FMath::Abs(RawBrakeInput);
-
-		// if player isn't pressing forward or backwards...
-		if (RawBrakeInput < SMALL_NUMBER && RawThrottleInput < SMALL_NUMBER)
-		{
-			if (VehicleState.ForwardSpeed < StopThreshold && VehicleState.ForwardSpeed > -StopThreshold)	//auto brake 
-			{
-				BrakeOut = 1.f;
-			}
-		}
-
-	}
-
 }
 
 float UChaosVehicleMovementComponent::CalcHandbrakeInput()
@@ -1112,7 +1188,9 @@ void UChaosVehicleMovementComponent::ClearInput()
 	PitchInput = 0.0f;
 	RollInput = 0.0f;
 	YawInput = 0.0f;
-
+	RunEngineStarterInput = false;
+	StartEngineInput = true;
+	
 	// Send this immediately.
 	int32 CurrentGear = 0;
 	if (PVehicleOutput)
@@ -1125,7 +1203,7 @@ void UChaosVehicleMovementComponent::ClearInput()
 	{
 		if (!bUsingNetworkPhysicsPrediction)
 		{
-			ServerUpdateState(SteeringInput, ThrottleInput, BrakeInput, HandbrakeInput, CurrentGear, RollInput, PitchInput, YawInput);
+			ServerUpdateState(RunEngineStarterInput, StartEngineInput, SteeringInput, ThrottleInput, BrakeInput, HandbrakeInput, CurrentGear, RollInput, PitchInput, YawInput);
 		}
 	}
 }
@@ -1141,6 +1219,8 @@ void UChaosVehicleMovementComponent::ClearRawInput()
 	bRawGearDownInput = false;
 	bRawGearUpInput = false;
 	bRawHandbrakeInput = false;
+	bEngineStarterRunning = false;
+	bEngineIsStarted = true;
 }
 
 // Update
@@ -1210,6 +1290,8 @@ void UChaosVehicleMovementComponent::UpdateState(float DeltaTime)
 		float ModifiedBrake = 0.f;
 		CalcThrottleBrakeInput(ModifiedThrottle, ModifiedBrake);
 
+		CalcSlippingPoint();
+		
 		// Apply Inputs locally
 		SteeringInput = SteeringInputRate.InterpInputValue(DeltaTime, SteeringInput, CalcSteeringInput());
 		ThrottleInput = ThrottleInputRate.InterpInputValue(DeltaTime, ThrottleInput, ModifiedThrottle);
@@ -1222,7 +1304,7 @@ void UChaosVehicleMovementComponent::UpdateState(float DeltaTime)
 		if (!bUsingNetworkPhysicsPrediction)
 		{
 			// and send to server - (ServerUpdateState_Implementation below)
-			ServerUpdateState(SteeringInput, ThrottleInput, BrakeInput, HandbrakeInput, GetCurrentGear(), RollInput, PitchInput, YawInput);
+			ServerUpdateState(RunEngineStarterInput,StartEngineInput, SteeringInput, ThrottleInput, BrakeInput, HandbrakeInput, GetCurrentGear(), RollInput, PitchInput, YawInput);
 		}
 
 		if (PawnOwner && PawnOwner->IsNetMode(NM_Client))
@@ -1241,6 +1323,37 @@ void UChaosVehicleMovementComponent::UpdateState(float DeltaTime)
 		YawInput = ReplicatedState.YawInput;
 		HandbrakeInput = ReplicatedState.HandbrakeInput;
 		SetTargetGear(ReplicatedState.TargetGear, true);
+		RunEngineStarterInput = ReplicatedState.RunEngineStarter;
+		StartEngineInput = ReplicatedState.StartEngine;
+	}
+}
+
+void UChaosVehicleMovementComponent::CalcSlippingPoint()
+{
+	if(TransmissionType == Chaos::ETransmissionType::Manual)
+	{
+		auto& PEngine = VehicleSimulationPT->PVehicle->GetEngine();
+		auto& PTransmission = VehicleSimulationPT->PVehicle->GetTransmission();
+		auto& PWheels = VehicleSimulationPT->PVehicle->Wheels;
+
+		float EngineSpeed = Chaos::OmegaToRPM(PEngine.GetEngineOmega());
+		float SlippingPoint = PEngine.Setup().EngineSlippingPoint;
+
+		float MinWheelSpeed = PTransmission.GetTransmissionRPM(PEngine.Setup().EngineSlippingPoint - PEngine.Setup().EngineIdleRPM, GetCurrentGear());
+		float WheelSpeed = 0.f;
+		
+		for (auto& Wheel : PWheels)
+		{
+			if(Wheel.EngineEnabled && abs(Wheel.Omega) > abs(WheelSpeed))
+			{
+				WheelSpeed = abs(Wheel.Omega);
+			}
+		}
+		
+		if(GetCurrentGear() != 0 && EngineSpeed < SlippingPoint && Chaos::OmegaToRPM(WheelSpeed) < MinWheelSpeed)
+		{
+			bEngineIsStarted = false;
+		}
 	}
 }
 
@@ -1284,8 +1397,8 @@ void UChaosVehicleMovementComponent::ProcessSleeping(const FControlInputs& Contr
 		PrevSteeringInput = ControlInputs.SteeringInput;
 		PrevReplicatedSteeringInput = ReplicatedState.SteeringInput;
 
-		// Wake if control input pressed
-		if ((VehicleState.bSleeping && bControlInputPressed) || GVehicleDebugParams.DisableVehicleSleep)
+		// Wake if control input pressed or engine is rotating
+		if ((VehicleState.bSleeping && bControlInputPressed) || GVehicleDebugParams.DisableVehicleSleep || (!GetIsEngineStarted() && VehicleSimulationPT->PVehicle->GetEngine().GetEngineRPM() > 0.f))
 		{
 			VehicleState.bSleeping = false;
 			VehicleState.SleepCounter = 0;
@@ -1312,12 +1425,12 @@ void UChaosVehicleMovementComponent::ProcessSleeping(const FControlInputs& Contr
 
 /// @cond DOXYGEN_WARNINGS
 
-bool UChaosVehicleMovementComponent::ServerUpdateState_Validate(float InSteeringInput, float InThrottleInput, float InBrakeInput, float InHandbrakeInput, int32 InCurrentGear, float InRollInput, float InPitchInput, float InYawInput)
+bool UChaosVehicleMovementComponent::ServerUpdateState_Validate(bool InRunEngineStarter, bool InEngineStarted, float InSteeringInput, float InThrottleInput, float InBrakeInput, float InHandbrakeInput, int32 InCurrentGear, float InRollInput, float InPitchInput, float InYawInput)
 {
 	return true;
 }
 
-void UChaosVehicleMovementComponent::ServerUpdateState_Implementation(float InSteeringInput, float InThrottleInput, float InBrakeInput
+void UChaosVehicleMovementComponent::ServerUpdateState_Implementation(bool InRunEngineStarter, bool InEngineStarted, float InSteeringInput, float InThrottleInput, float InBrakeInput
 	, float InHandbrakeInput, int32 InCurrentGear, float InRollInput, float InPitchInput, float InYawInput)
 {
 	SteeringInput = InSteeringInput;
@@ -1327,6 +1440,8 @@ void UChaosVehicleMovementComponent::ServerUpdateState_Implementation(float InSt
 	RollInput = InRollInput;
 	PitchInput = InPitchInput;
 	YawInput = InYawInput;
+	RunEngineStarterInput = InRunEngineStarter;
+	StartEngineInput = InEngineStarted;
 
 	if (!GetUseAutoGears())
 	{
@@ -1348,6 +1463,8 @@ void UChaosVehicleMovementComponent::ServerUpdateState_Implementation(float InSt
 	ReplicatedState.RollInput = InRollInput;
 	ReplicatedState.PitchInput = InPitchInput;
 	ReplicatedState.YawInput = InYawInput;
+	ReplicatedState.RunEngineStarter = InRunEngineStarter;
+	ReplicatedState.StartEngine = InEngineStarted;
 
 }
 
@@ -1511,7 +1628,7 @@ void UChaosVehicleMovementComponent::UpdateMassProperties(FBodyInstance* BodyIns
 				InertiaTensor.X *= this->InertiaTensorScale.X * MassRatio;
 				InertiaTensor.Y *= this->InertiaTensorScale.Y * MassRatio;
 				InertiaTensor.Z *= this->InertiaTensorScale.Z * MassRatio;
-
+			
 				if (bEnableCenterOfMassOverride)
 				{
 					FTransform COMTransform = FPhysicsInterface::GetComTransformLocal_AssumesLocked(Actor);
@@ -1572,6 +1689,7 @@ void UChaosVehicleMovementComponent::DrawDebug(UCanvas* Canvas, float& YL, float
 			FVector FinalCOM = TargetInstance->GetMassSpaceLocal().GetTranslation();
 			FVector OffsetCOM = TargetInstance->COMNudge;
 			FVector BaseCOM = FinalCOM - TargetInstance->COMNudge;
+
 			YPos += Canvas->DrawText(RenderFont, FString::Printf(TEXT("Mass (Kg): %.1f"), TargetInstance->GetBodyMass()), 4, YPos);
 			YPos += Canvas->DrawText(RenderFont, FString::Printf(TEXT("Local COM : %s"), *FinalCOM.ToString()), 4, YPos);
 			YPos += Canvas->DrawText(RenderFont, FString::Printf(TEXT("[COM Base : %s  COM Offset : %s]"), *BaseCOM.ToString(), *OffsetCOM.ToString()), 4, YPos);
@@ -1767,6 +1885,9 @@ void UChaosVehicleMovementComponent::Update(float DeltaTime)
 				AsyncInput->PhysicsInputs.NetworkInputs.VehicleInputs.GearDownInput = bRawGearDownInput;
 				AsyncInput->PhysicsInputs.NetworkInputs.VehicleInputs.TransmissionType = TransmissionType;
 				AsyncInput->PhysicsInputs.NetworkInputs.VehicleInputs.ParkingEnabled = bParkEnabled;
+				AsyncInput->PhysicsInputs.NetworkInputs.VehicleInputs.RunEngineStarter = bEngineStarterRunning;
+				AsyncInput->PhysicsInputs.NetworkInputs.VehicleInputs.EngineStarted = bEngineIsStarted;
+				AsyncInput->PhysicsInputs.NetworkInputs.VehicleInputs.UseClutch = bUseClutch;
 
 				// debug feature to limit the vehicles top speed
 				if ((GVehicleDebugParams.SetMaxMPH > 0.f) && (FMath::Abs(ThrottleInput) > 0.0f) && FMath::Abs(GetForwardSpeedMPH()) >= GVehicleDebugParams.SetMaxMPH)
@@ -1961,5 +2082,3 @@ void UChaosVehicleMovementComponent::PutAllEnabledRigidBodiesToSleep()
 #if VEHICLE_DEBUGGING_ENABLED
 PRAGMA_ENABLE_OPTIMIZATION
 #endif
-
-

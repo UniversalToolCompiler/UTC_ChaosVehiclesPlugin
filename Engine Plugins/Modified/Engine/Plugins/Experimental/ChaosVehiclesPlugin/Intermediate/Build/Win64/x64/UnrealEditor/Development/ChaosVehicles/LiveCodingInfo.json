@@ -5,28 +5,28 @@
 			"AnimNode_StageCoachWheelController.gen.cpp.obj",
 			"AnimNode_WheelController.gen.cpp.obj",
 			"ChaosVehicleManagerAsyncCallback.gen.cpp.obj",
-			"ChaosVehicleMovementComponent.gen.cpp.obj",
-			"ChaosVehicles.init.gen.cpp.obj",
-			"ChaosVehicleWheel.gen.cpp.obj"
+			"ChaosVehicleMovementComponent.gen.cpp.obj"
 		],
 		"Module.ChaosVehicles.2.cpp.obj": [
-			"ChaosWheeledVehicleMovementComponent.gen.cpp.obj",
+			"ChaosVehicles.init.gen.cpp.obj",
+			"ChaosVehicleWheel.gen.cpp.obj",
+			"ChaosWheeledVehicleMovementComponent.gen.cpp.obj"
+		],
+		"Module.ChaosVehicles.3.cpp.obj": [
 			"SnapshotData.gen.cpp.obj",
 			"VehicleAnimationInstance.gen.cpp.obj",
 			"WheeledVehiclePawn.gen.cpp.obj",
 			"AnimNode_StageCoachWheelController.cpp.obj",
+			"ChaosVehicleManager.cpp.obj",
+			"ChaosVehiclesPlugin.cpp.obj",
+			"WheeledVehiclePawn.cpp.obj",
 			"AnimNode_WheelController.cpp.obj",
-			"ChaosVehicleManager.cpp.obj"
-		],
-		"Module.ChaosVehicles.3.cpp.obj": [
 			"ChaosVehicleManagerAsyncCallback.cpp.obj",
 			"ChaosVehicleMovementComponent.cpp.obj",
-			"ChaosVehiclesPlugin.cpp.obj",
 			"ChaosVehicleWheel.cpp.obj",
 			"ChaosWheeledVehicleMovementComponent.cpp.obj",
 			"DeferredForces.cpp.obj",
-			"VehicleAnimationInstance.cpp.obj",
-			"WheeledVehiclePawn.cpp.obj"
+			"VehicleAnimationInstance.cpp.obj"
 		]
 	}
 }

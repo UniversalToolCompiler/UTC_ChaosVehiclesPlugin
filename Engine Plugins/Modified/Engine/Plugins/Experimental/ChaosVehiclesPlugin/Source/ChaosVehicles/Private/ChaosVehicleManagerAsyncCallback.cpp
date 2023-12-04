@@ -106,6 +106,7 @@ void FChaosVehicleManagerAsyncCallback::OnPreSimulate_Internal()
 		}
 
 		Chaos::FRigidBodyHandle_Internal* Handle = VehicleInput.Proxy->GetPhysicsThreadAPI();
+		
 		if (Handle->ObjectState() != Chaos::EObjectStateType::Dynamic)
 		{
 			return;
@@ -172,6 +173,9 @@ bool FNetworkVehicleInputs::NetSerialize(FArchive& Ar, class UPackageMap* Map, b
 	Ar << VehicleInputs.RollInput;
 	Ar << VehicleInputs.YawInput;
 	Ar << VehicleInputs.HandbrakeInput;
+	Ar << VehicleInputs.RunEngineStarter;
+	Ar << VehicleInputs.EngineStarted;
+	Ar << VehicleInputs.UseClutch;
 
 	Ar << TransmissionChangeTime;
 	Ar << TransmissionCurrentGear;
@@ -279,6 +283,9 @@ void FNetworkVehicleInputs::InterpolateDatas(const FNetworkVehicleInputs& MinDat
 	VehicleInputs.GearDownInput = LerpFactor < 0.5 ? MinDatas.VehicleInputs.GearDownInput : MaxDatas.VehicleInputs.GearDownInput;
 	VehicleInputs.GearUpInput = LerpFactor < 0.5 ? MinDatas.VehicleInputs.GearUpInput : MaxDatas.VehicleInputs.GearUpInput;
 	VehicleInputs.TransmissionType = LerpFactor < 0.5 ? MinDatas.VehicleInputs.TransmissionType : MaxDatas.VehicleInputs.TransmissionType;
+	VehicleInputs.RunEngineStarter = LerpFactor < 0.5 ? MinDatas.VehicleInputs.RunEngineStarter : MaxDatas.VehicleInputs.RunEngineStarter;
+	VehicleInputs.EngineStarted = LerpFactor < 0.5 ? MinDatas.VehicleInputs.EngineStarted : MaxDatas.VehicleInputs.EngineStarted;
+	VehicleInputs.UseClutch = LerpFactor < 0.5 ? MinDatas.VehicleInputs.UseClutch : MaxDatas.VehicleInputs.UseClutch;
 }
 
 bool FNetworkVehicleStates::NetSerialize(FArchive& Ar, class UPackageMap* Map, bool& bOutSuccess)

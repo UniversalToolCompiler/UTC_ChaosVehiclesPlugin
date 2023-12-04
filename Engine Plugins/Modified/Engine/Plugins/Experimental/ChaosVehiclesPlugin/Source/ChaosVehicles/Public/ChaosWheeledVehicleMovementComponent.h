@@ -228,13 +228,29 @@ struct CHAOSVEHICLES_API FVehicleEngineConfig
 		InitDefaults();
 	}
 
-	/** Torque [Normalized 0..1] for a given RPM */
-	UPROPERTY(EditAnywhere, Category = Setup)
-	FRuntimeFloatCurve TorqueCurve;
-
 	/** Max Engine Torque (Nm) is multiplied by TorqueCurve */
 	UPROPERTY(EditAnywhere, Category = Setup)
 	float MaxTorque;
+	
+	/** Torque [Normalized 0..1] for a given RPM */
+	UPROPERTY(EditAnywhere, Category = Setup)
+	FRuntimeFloatCurve TorqueCurve;
+	
+	/** Time to initialize the engine */
+	UPROPERTY(EditAnywhere, Category = Setup)
+	float EngineIgnitionDuration;
+	
+	/** Time to start the engine */
+	UPROPERTY(EditAnywhere, Category = Setup)
+	float EngineStarterDuration;
+
+	/** Max engine starter speed */
+	UPROPERTY(EditAnywhere, Category = Setup)
+	float MaxEngineStarterRPM;
+	
+	/** Engine RPM at given time when starting the engine */
+	UPROPERTY(EditAnywhere, Category = Setup)
+	FRuntimeFloatCurve EngineStarterCurve;
 
 	/** Maximum revolutions per minute of the engine */
 	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.01", UIMin = "0.01"))
@@ -243,6 +259,10 @@ struct CHAOSVEHICLES_API FVehicleEngineConfig
 	/** Idle RMP of engine then in neutral/stationary */
 	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.01", UIMin = "0.01"))
 	float EngineIdleRPM;
+
+	/** At which RPM engine stalls */
+	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.01", UIMin = "0.01"))
+	float EngineSlippingPoint;
 
 	/** Braking effect from engine, when throttle released */
 	UPROPERTY(EditAnywhere, Category = Setup)
@@ -265,8 +285,12 @@ struct CHAOSVEHICLES_API FVehicleEngineConfig
 	void InitDefaults()
 	{
 		MaxTorque = 300.0f;
+		EngineStarterDuration = 1.5f;
+		EngineIgnitionDuration = 1.0f;
+		MaxEngineStarterRPM = 850;
 		MaxRPM = 4500.0f;
 		EngineIdleRPM = 1200.0f;
+		EngineSlippingPoint = 1250.f;
 		EngineBrakeEffect = 0.05f;
 		EngineRevUpMOI = 5.0f;
 		EngineRevDownRate = 600.0f;
@@ -295,9 +319,22 @@ private:
 			float Y = this->TorqueCurve.GetRichCurveConst()->Eval(X) / MaxVal;
 			PEngineConfig.TorqueCurve.AddNormalized(Y);
 		}
+		
+		for (float X = 0; X <= EngineStarterDuration; X+= (this->EngineStarterDuration / NumSamples))
+		{ 
+			float MinVal = 0.f, MaxVal = 0.f;
+			this->EngineStarterCurve.GetRichCurveConst()->GetValueRange(MinVal, MaxVal);
+			float Y = this->EngineStarterCurve.GetRichCurveConst()->Eval(X) / MaxVal;
+			PEngineConfig.EngineStarterCurve.AddNormalized(Y);
+		}
+		
+		PEngineConfig.EngineStarterDuration = this->EngineStarterDuration;
+		PEngineConfig.EngineIgnitionDuration = this->EngineIgnitionDuration;
+		PEngineConfig.MaxEngineStarterRPM = this->MaxEngineStarterRPM;
 		PEngineConfig.MaxTorque = this->MaxTorque;
 		PEngineConfig.MaxRPM = this->MaxRPM;
 		PEngineConfig.EngineIdleRPM = this->EngineIdleRPM;
+		PEngineConfig.EngineSlippingPoint = this->EngineSlippingPoint;
 		PEngineConfig.EngineBrakeEffect = this->EngineBrakeEffect;
 		PEngineConfig.EngineRevUpMOI = this->EngineRevUpMOI;
 		PEngineConfig.EngineRevDownRate = this->EngineRevDownRate;
@@ -322,6 +359,10 @@ struct CHAOSVEHICLES_API FVehicleTransmissionConfig
 	/** Whether to use automatic transmission */
 	UPROPERTY(EditAnywhere, Category = VehicleSetup, meta=(DisplayName = "Automatic Transmission"))
 	bool bUseAutomaticGears;
+
+	/** Whether to use clutch to change gear */
+	UPROPERTY(EditAnywhere, Category = VehicleSetup, meta=(DisplayName = "Use Clutch", EditCondition = "!bUseAutomaticGears"))
+	bool bUseClutch = false;
 
 	UPROPERTY(EditAnywhere, Category = VehicleSetup, meta = (DisplayName = "Automatic Reverse"))
 	bool bUseAutoReverse;
@@ -363,6 +404,7 @@ struct CHAOSVEHICLES_API FVehicleTransmissionConfig
 	void InitDefaults()
 	{
 		bUseAutomaticGears = true;
+		bUseClutch = false;
 		bUseAutoReverse = true;
 		FinalRatio = 3.08f;
 
@@ -402,6 +444,7 @@ private:
 	void FillTransmissionSetup()
 	{
 		PTransmissionConfig.TransmissionType = this->bUseAutomaticGears ? Chaos::ETransmissionType::Automatic : Chaos::ETransmissionType::Manual;
+		PTransmissionConfig.bUseClutch = this->bUseClutch;
 		PTransmissionConfig.AutoReverse = this->bUseAutoReverse;
 		PTransmissionConfig.ChangeUpRPM = this->ChangeUpRPM;
 		PTransmissionConfig.ChangeDownRPM = this->ChangeDownRPM;
@@ -560,6 +603,16 @@ struct CHAOSVEHICLES_API FWheelState
 	TArray<FHitResult> TraceResult;
 };
 
+USTRUCT()
+struct CHAOSVEHICLES_API FChaosMechanicalAnimSetup
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, Category = "Mechanical Animations")
+	FName DriveShaftBoneName;
+	
+	FChaosMechanicalAnimSetup();
+};
 //////////////////////////////////////////////////////////////////////////
 
 class CHAOSVEHICLES_API UChaosWheeledVehicleSimulation : public UChaosVehicleSimulation
@@ -606,7 +659,7 @@ public:
 
 
 	/** Update the engine/transmission simulation */
-	virtual void ProcessMechanicalSimulation(float DeltaTime);
+	virtual void ProcessMechanicalSimulation(float DeltaTime, const FControlInputs& ControlInputs);
 
 	/** Process steering mechanism */
 	virtual void ProcessSteering(const FControlInputs& ControlInputs);
@@ -632,6 +685,8 @@ public:
 	TArray<FOverlapResult> OverlapResults;
 	bool bOverlapHit;
 	FBox QueryBox;
+
+	void UTC_Debug(const FControlInputs& ControlInputs);
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -641,6 +696,9 @@ class CHAOSVEHICLES_API UChaosWheeledVehicleMovementComponent : public UChaosVeh
 {
 	GENERATED_UCLASS_BODY()
 
+	UPROPERTY(EditAnywhere, Category = MechanicalAnimation, meta=(ShowOnlyInnerProperties))
+	FChaosMechanicalAnimSetup MechanicalAnimationSetup;
+	
 	UPROPERTY(EditAnywhere, Category = WheelSetup)
 	bool bSuspensionEnabled;
 

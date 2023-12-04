@@ -84,7 +84,6 @@ namespace Chaos
 			float BrakeTorque = 0.0f;
 			TransmitTorque(VehicleModuleSystem, DriveTorque, BrakeTorque, GearRatio);
 		}
-
 	}
 
 	float FTransmissionSimModule::GetGearRatio(int32 InGear) const

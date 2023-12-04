@@ -72,6 +72,10 @@
 				WheelInstance.RotOffset = FRotator::ZeroRotator;
 			}
 		}
+		
+		const FChaosMechanicalAnimSetup& MechanicalAnimSetup = WheeledVehicleComponent->MechanicalAnimationSetup;
+		MechanicalAnimationInstance.DriveShaft_BoneName = MechanicalAnimSetup.DriveShaftBoneName;
+		MechanicalAnimationInstance.DriveShaft_RotOffset = FRotator::ZeroRotator;
 	}
 
 	void FVehicleAnimationInstanceProxy::PreUpdate(UAnimInstance* InAnimInstance, float DeltaSeconds)
@@ -81,6 +85,9 @@
 		const UVehicleAnimationInstance* VehicleAnimInstance = CastChecked<UVehicleAnimationInstance>(InAnimInstance);
 		if (const UChaosWheeledVehicleMovementComponent* WheeledVehicleComponent = VehicleAnimInstance->GetWheeledVehicleComponent())
 		{
+			/** Wheel rotation */
+			float WheelDriveSpeed = 0.f;
+			
 			for (int32 WheelIndex = 0; WheelIndex < WheelInstances.Num(); ++WheelIndex)
 			{
 				FWheelAnimationData& WheelInstance = WheelInstances[WheelIndex];
@@ -114,16 +121,25 @@
 							// integrate to angular position
 							float RotationDelta = CorrectedAngularVelocity * DeltaSeconds;
 							WheelInstance.RotOffset.Pitch += RotationDelta;
-
 							int ExcessRotations = (int)(WheelInstance.RotOffset.Pitch / 360.0f);
-							if (FMath::Abs(ExcessRotations) > 1)
+							if (FMath::Abs(ExcessRotations) > 1)	
 							{
 								WheelInstance.RotOffset.Pitch -= ExcessRotations * 360.0f;
+							}
+
+							if(VehicleWheel->bAffectedByEngine)
+							{
+								WheelDriveSpeed = WheelInstance.RotOffset.Pitch;
 							}
 						}
 						else
 						{
 							WheelInstance.RotOffset.Pitch = VehicleWheel->GetRotationAngle();
+
+							if(VehicleWheel->bAffectedByEngine)
+							{
+								WheelDriveSpeed = WheelInstance.RotOffset.Pitch;
+							}
 						}
 						WheelInstance.RotOffset.Yaw = VehicleWheel->GetSteerAngle();
 						WheelInstance.RotOffset.Roll = 0.f;
@@ -132,6 +148,10 @@
 					}
 				}
 			}
+
+			/** Drive shaft rotation */
+			FMechanicalAnimationData& MechanicalInstance = MechanicalAnimationInstance;
+			MechanicalInstance.DriveShaft_RotOffset.Roll = WheelDriveSpeed;
 		}
 	}
 

@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "ChaosVehicles/Public/WheeledVehiclePawn.h"
+#include "WheeledVehiclePawn.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWheeledVehiclePawn() {}
 // Cross Module References
@@ -50,29 +50,21 @@ void EmptyLinkFunctionForGeneratedCodeWheeledVehiclePawn() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWheeledVehiclePawn_Statics::Class_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/**\n * ChaosWheeledVehicle is the base wheeled vehicle pawn actor.\n * By default it uses UChaosWheeledVehicleMovementComponent for its simulation, but this can be overridden by inheriting from the class and modifying its constructor like so:\n * Super(ObjectInitializer.SetDefaultSubobjectClass<UMyMovement>(VehicleComponentName))\n * Where UMyMovement is the new movement type that inherits from UChaosVehicleMovementComponent\n */" },
-#endif
 		{ "HideCategories", "Navigation" },
 		{ "IncludePath", "WheeledVehiclePawn.h" },
 		{ "ModuleRelativePath", "Public/WheeledVehiclePawn.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "ChaosWheeledVehicle is the base wheeled vehicle pawn actor.\nBy default it uses UChaosWheeledVehicleMovementComponent for its simulation, but this can be overridden by inheriting from the class and modifying its constructor like so:\nSuper(ObjectInitializer.SetDefaultSubobjectClass<UMyMovement>(VehicleComponentName))\nWhere UMyMovement is the new movement type that inherits from UChaosVehicleMovementComponent" },
-#endif
 	};
 #endif
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_Mesh_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Vehicle" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/**  The main skeletal mesh associated with this Vehicle */" },
-#endif
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/WheeledVehiclePawn.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "The main skeletal mesh associated with this Vehicle" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FObjectPtrPropertyParams Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_Mesh = { "Mesh", nullptr, (EPropertyFlags)0x00440000000b001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWheeledVehiclePawn, Mesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_Mesh_MetaData), Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_Mesh_MetaData) };
@@ -80,14 +72,10 @@ void EmptyLinkFunctionForGeneratedCodeWheeledVehiclePawn() {}
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_VehicleMovementComponent_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Vehicle" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** vehicle simulation component */" },
-#endif
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/WheeledVehiclePawn.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "vehicle simulation component" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FObjectPtrPropertyParams Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_VehicleMovementComponent = { "VehicleMovementComponent", nullptr, (EPropertyFlags)0x00440000000b001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWheeledVehiclePawn, VehicleMovementComponent), Z_Construct_UClass_UChaosVehicleMovementComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_VehicleMovementComponent_MetaData), Z_Construct_UClass_AWheeledVehiclePawn_Statics::NewProp_VehicleMovementComponent_MetaData) };
@@ -128,15 +116,15 @@ void EmptyLinkFunctionForGeneratedCodeWheeledVehiclePawn() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWheeledVehiclePawn);
 	AWheeledVehiclePawn::~AWheeledVehiclePawn() {}
-	struct Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics
+	struct Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AWheeledVehiclePawn, AWheeledVehiclePawn::StaticClass, TEXT("AWheeledVehiclePawn"), &Z_Registration_Info_UClass_AWheeledVehiclePawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWheeledVehiclePawn), 1321571826U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AWheeledVehiclePawn, AWheeledVehiclePawn::StaticClass, TEXT("AWheeledVehiclePawn"), &Z_Registration_Info_UClass_AWheeledVehiclePawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWheeledVehiclePawn), 1489405522U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_826121887(TEXT("/Script/ChaosVehicles"),
-		Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_3834392316(TEXT("/Script/ChaosVehicles"),
+		Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_WheeledVehiclePawn_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

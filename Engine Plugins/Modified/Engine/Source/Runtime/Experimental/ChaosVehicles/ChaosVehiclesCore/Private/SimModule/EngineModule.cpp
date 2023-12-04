@@ -13,10 +13,10 @@ namespace Chaos
 
 	void FEngineSimModule::Simulate(float DeltaTime, const FAllInputs& Inputs, FSimModuleTree& VehicleModuleSystem)
 	{
-		if (!EngineStarted)
-		{
-			return;
-		}
+		// if (!EngineStarted)
+		// {
+		// 	return;
+		// }
 
 		// TODO: Engine braking effect
 		DriveTorque = GetEngineTorque(Inputs.ControlInputs.Throttle, GetRPM());

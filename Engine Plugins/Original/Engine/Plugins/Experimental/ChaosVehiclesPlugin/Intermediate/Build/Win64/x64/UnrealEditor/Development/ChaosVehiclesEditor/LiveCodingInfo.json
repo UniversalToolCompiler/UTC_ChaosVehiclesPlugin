@@ -1,0 +1,16 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.ChaosVehiclesEditor.cpp.obj": [
+			"AnimGraphNode_StageCoachWheelController.gen.cpp.obj",
+			"AnimGraphNode_WheelController.gen.cpp.obj",
+			"ChaosVehiclesEditor.init.gen.cpp.obj",
+			"AnimGraphNode_StageCoachWheelController.cpp.obj",
+			"AnimGraphNode_WheelController.cpp.obj",
+			"AssetTypeActions_ChaosVehicles.cpp.obj",
+			"ChaosVehiclesEditorCommands.cpp.obj",
+			"ChaosVehiclesEditorPlugin.cpp.obj",
+			"ChaosVehiclesFactory.cpp.obj"
+		]
+	}
+}

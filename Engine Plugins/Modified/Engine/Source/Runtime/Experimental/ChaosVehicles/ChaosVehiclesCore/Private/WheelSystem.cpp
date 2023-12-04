@@ -41,12 +41,12 @@ namespace Chaos
 		, SlipAngle(0.f)
 		, bInContact(false)
 		, WheelIndex(0)
-		, bEngineBraking(false)
 		, Spin(0.f)
 		, AvailableGrip(0.f)
 		, InputForces(FVector::ZeroVector)
 		, bClipping(false)
 		, bABSActivated(false)
+		, bEngineBraking(false)
 	{
 
 	}
@@ -130,17 +130,16 @@ namespace Chaos
 				// so force is opposing current direction of travel.
 				float ForceRequiredToBringToStop = MassPerWheel * K * (GroundVelocityVector.X) / DeltaTime;
 				FinalLongitudinalForce = AppliedLinearBrakeForce;
-
+			
 				// check we are not applying more force than required so we end up overshooting 
 				// and accelerating in the opposite direction
 				FinalLongitudinalForce = FMath::Clamp(FinalLongitudinalForce, -FMath::Abs(ForceRequiredToBringToStop), FMath::Abs(ForceRequiredToBringToStop));
-
+			
 				// ensure the brake opposes current direction of travel
 				if (GroundVelocityVector.X > 0.0f)
 				{
 					FinalLongitudinalForce = -FinalLongitudinalForce;
 				}
-
 			}
 			else
 			{
@@ -222,7 +221,11 @@ namespace Chaos
 			}
 			else
 			{
+				//#TODO - UTC: set K based on wheel characteristics
+				//#TODO - UTC: Min omega for driving wheel if gear != 0
+				//#TODO - UTC: transition forward -> backward in void
 				Omega += SlipOmega;
+				Omega *= FMath::Exp(-K * DeltaTime);
 			}
 		}
 

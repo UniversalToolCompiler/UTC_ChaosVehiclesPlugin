@@ -81,6 +81,9 @@ struct CHAOSVEHICLES_API FControlInputs : public FVehicleInputs
 		, TransmissionType(Chaos::ETransmissionType::Automatic)
 		, GearUpInput(false)
 		, GearDownInput(false)
+		, RunEngineStarter(false)
+		, EngineStarted(true)
+		, UseClutch(false)
 	{}
 
 	/** Check if the parking is enabled  */
@@ -98,6 +101,18 @@ struct CHAOSVEHICLES_API FControlInputs : public FVehicleInputs
 	/** Check if the user has descreased the gear */
 	UPROPERTY()
 	bool GearDownInput;
+
+	/** Check if the user try to start the engine */
+	UPROPERTY()
+	bool RunEngineStarter;
+
+	/** Check if the user started the engine */
+	UPROPERTY()
+	bool EngineStarted;
+
+	/** Check if the user use clutch transmission */
+	UPROPERTY()
+	bool UseClutch;
 };
 
 /** Vehicle Inputs datas that will be used in the inputs history to be applied while simulating */

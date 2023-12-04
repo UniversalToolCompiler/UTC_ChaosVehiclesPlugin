@@ -66,6 +66,7 @@ namespace Chaos
 			, GearChangeTime(0.2f)
 			, TransmissionEfficiency(1.f)
 			, TransmissionType(ETransmissionType::Automatic)
+			, bUseClutch(false)
 			, AutoReverse(true)
 		{
 		}
@@ -81,6 +82,7 @@ namespace Chaos
 		float TransmissionEfficiency;	// Loss from friction in the system mean we might run at around 0.94 Efficiency
 
 		ETransmissionType TransmissionType;	// Specify Automatic or Manual transmission
+		bool bUseClutch; //Specify if clutch is necessary to change gear
 
 		bool AutoReverse;					// Arcade handling - holding Brake switches into reverse after vehicle has stopped
 	};

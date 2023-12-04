@@ -34,8 +34,13 @@ class UChaosWheeledVehicleMovementComponent;
 		/** Use sphere to determine suspension length to ground */
 		Spherecast	UMETA(DisplayName = "Spherecast"),
 
+		/** Use sphere and ray to determine suspension length to ground */
+		AdvancedSpherecast UMETA(DisplayName = "Advanced Spherecast"),
+
 		/** Use wheel collision shape to determine suspension length to ground - Slowest */
 		Shapecast	UMETA(DisplayName = "Shapecast")
+
+		
 	};
 
 	UENUM()
@@ -96,6 +101,10 @@ class UChaosWheeledVehicleMovementComponent;
 		/** Width of the wheel */
 		UPROPERTY(EditAnywhere, Category = Wheel, meta = (ClampMin = "0.01", UIMin = "0.01"))
 		float WheelWidth;
+
+		/** Add an offset on Y axis if the wheel pivot point isn't on the wheel side */
+		UPROPERTY(EditAnywhere, Category = Wheel)
+		float WheelPivotPointOffset;
 
 		/** Mass of the wheel Kg */
 		UPROPERTY(EditAnywhere, Category = Wheel, meta = (ClampMin = "0.01", UIMin = "0.01"))

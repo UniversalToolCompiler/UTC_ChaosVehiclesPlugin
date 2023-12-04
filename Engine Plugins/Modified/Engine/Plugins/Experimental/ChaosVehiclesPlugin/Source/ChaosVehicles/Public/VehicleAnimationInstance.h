@@ -17,6 +17,13 @@ struct FWheelAnimationData
 	FVector LocOffset;
 };
 
+struct FMechanicalAnimationData
+{
+	/** Transmission Drive shaft */ 
+	FName DriveShaft_BoneName;
+	FRotator DriveShaft_RotOffset;
+};
+
 /** Proxy override for this UAnimInstance-derived class */
 USTRUCT()
 	struct CHAOSVEHICLES_API FVehicleAnimationInstanceProxy : public FAnimInstanceProxy
@@ -54,6 +61,11 @@ public:
 		return WheelInstances;
 	}
 
+	const FMechanicalAnimationData& GetMechanicalAnimationData() const
+	{
+		return MechanicalAnimationInstance;
+	}
+
 	void SetStageCoachEffectParams(int InWheelSpokeCount, float InMaxAngularVelocity, float InShutterSpeed, float InStageCoachBlend)
 	{
 		WheelSpokeCount = InWheelSpokeCount;
@@ -70,6 +82,7 @@ private:
 	float ShutterSpeed;				// Camera shutter speed in frames/second
 	float StageCoachBlend;			// Blend effect degrees/second
 
+	FMechanicalAnimationData MechanicalAnimationInstance;
 };
 
 UCLASS(transient)

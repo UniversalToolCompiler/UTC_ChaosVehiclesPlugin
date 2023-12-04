@@ -74,6 +74,8 @@ namespace Chaos
 
 			return NormYValue * MaxY;
 		}
+
+		
 	private:
 		TArray<float> Graph;
 	};

@@ -67,9 +67,9 @@ void FAnimNode_WheelController::EvaluateSkeletalControl_AnyThread(FComponentSpac
 				FAnimationRuntime::ConvertCSTransformToBoneSpace(Output.AnimInstanceProxy->GetComponentTransform(), Output.Pose, NewBoneTM, WheelSimBoneIndex, BCS_ComponentSpace);
 
 				// Apply rotation offset
-				const FQuat BoneQuat(WheelAnimData[Wheel.WheelIndex].RotOffset);
+				const FQuat BoneQuat(WheelAnimData[Wheel.WheelIndex].RotOffset.GetNormalized());
 				NewBoneTM.SetRotation(BoneQuat * NewBoneTM.GetRotation());
-
+				
 				// Apply loc offset
 				NewBoneTM.AddToTranslation(WheelAnimData[Wheel.WheelIndex].LocOffset);
 
@@ -78,6 +78,7 @@ void FAnimNode_WheelController::EvaluateSkeletalControl_AnyThread(FComponentSpac
 
 				// add back to it
 				OutBoneTransforms.Add(FBoneTransform(WheelSimBoneIndex, NewBoneTM));
+
 			}
 			else
 			{
@@ -101,6 +102,22 @@ void FAnimNode_WheelController::EvaluateSkeletalControl_AnyThread(FComponentSpac
 		}
 	}
 #endif
+
+	/** ----------------------------------------------------------------------------------------------------------------------------------------------------*/
+	/** Drive shaft */
+	const FMechanicalAnimationData& MechanicalAnimData = AnimInstanceProxy->GetMechanicalAnimationData();
+	if (MechanicalElements.DriveShaft_BoneReference.IsValidToEvaluate(BoneContainer))
+	{
+		FCompactPoseBoneIndex DriveShaftBoneIndex = MechanicalElements.DriveShaft_BoneReference.GetCompactPoseIndex(BoneContainer);
+		FTransform DriveShaft_NewBoneTM = Output.Pose.GetComponentSpaceTransform(DriveShaftBoneIndex);
+		FAnimationRuntime::ConvertCSTransformToBoneSpace(Output.AnimInstanceProxy->GetComponentTransform(), Output.Pose, DriveShaft_NewBoneTM, DriveShaftBoneIndex, BCS_ComponentSpace);
+
+		const FQuat DriveShaft_BoneQuat(MechanicalAnimData.DriveShaft_RotOffset);
+		DriveShaft_NewBoneTM.SetRotation(DriveShaft_BoneQuat * DriveShaft_NewBoneTM.GetRotation());
+
+		FAnimationRuntime::ConvertBoneSpaceTransformToCS(Output.AnimInstanceProxy->GetComponentTransform(), Output.Pose, DriveShaft_NewBoneTM, DriveShaftBoneIndex, BCS_ComponentSpace);
+		OutBoneTransforms.Add(FBoneTransform(DriveShaftBoneIndex, DriveShaft_NewBoneTM));
+	}
 }
 
 bool FAnimNode_WheelController::IsValidToEvaluate(const USkeleton* Skeleton, const FBoneContainer& RequiredBones) 
@@ -134,6 +151,14 @@ void FAnimNode_WheelController::InitializeBoneReferences(const FBoneContainer& R
 
 	// sort by bone indices
 	Wheels.Sort([](const FWheelLookupData& L, const FWheelLookupData& R) { return L.BoneReference.BoneIndex < R.BoneReference.BoneIndex; });
+
+	
+	/** ----------------------------------------------------------------------------------------------------------------------------------------------------*/
+	const FMechanicalAnimationData& MechanicalAnimData = AnimInstanceProxy->GetMechanicalAnimationData();
+	FMechanicalAnimLookupData& MechanicalElem = MechanicalElements;
+	
+	MechanicalElem.DriveShaft_BoneReference = MechanicalAnimData.DriveShaft_BoneName;
+	MechanicalElem.DriveShaft_BoneReference.Initialize(RequiredBones);
 }
 
 void FAnimNode_WheelController::Initialize_AnyThread(const FAnimationInitializeContext& Context)

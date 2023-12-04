@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define CHAOSVEHICLES_AnimNode_WheelController_generated_h
 
-#define FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_AnimNode_WheelController_h_19_GENERATED_BODY \
+#define FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_AnimNode_WheelController_h_19_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FAnimNode_WheelController_Statics; \
 	static class UScriptStruct* StaticStruct(); \
 	typedef FAnimNode_SkeletalControlBase Super;
@@ -23,7 +23,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<struct FAnimNode_WheelController>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_AnimNode_WheelController_h
+#define CURRENT_FILE_ID FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_AnimNode_WheelController_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

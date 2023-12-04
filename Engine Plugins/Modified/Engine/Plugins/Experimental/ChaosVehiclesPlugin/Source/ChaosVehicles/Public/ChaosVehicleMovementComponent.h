@@ -65,6 +65,8 @@ struct CHAOSVEHICLES_API FVehicleReplicatedState : public FVehicleInputs
 		TargetGear = 0;
 		ThrottleUp = 0.f;
 		ThrottleDown = 0.f;
+		RunEngineStarter = false;
+		StartEngine = true;
 	}
 
 	// state replication: gear
@@ -78,6 +80,14 @@ struct CHAOSVEHICLES_API FVehicleReplicatedState : public FVehicleInputs
 	// input replication: decrease throttle
 	UPROPERTY()
 	float ThrottleDown;
+
+	// input replication: Engine starter is running
+	UPROPERTY()
+	bool RunEngineStarter;
+	
+	// input replication: Start engine
+	UPROPERTY()
+	bool StartEngine;
 };
 
 USTRUCT()
@@ -838,7 +848,17 @@ protected:
 	UPROPERTY(Transient)
 	uint8 bParkEnabled : 1;
 
+	UPROPERTY(Transient)
+	uint8 bEngineStarterRunning : 1;
+	
+	UPROPERTY(Transient)
+	uint8 bEngineIsStarted : 1;
+
+	UPROPERTY(Transient)
+	uint8 bUseClutch : 1;
+
 	Chaos::ETransmissionType TransmissionType;
+
 
 	UPROPERTY()
 	TObjectPtr<UNetworkPhysicsComponent> NetworkPhysicsComponent = nullptr;
@@ -945,6 +965,14 @@ public:
 	/** Set the flag that determines whether a controller is required to set control inputs */
 	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
 	void SetRequiresControllerForInputs(bool bRequiresController);
+	
+	/** Init starter to launch the vehicle engine, if the engine is already started, turn the engine off */
+	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
+	void RunEngineStarter(bool bRunEngineStarter, float DeltaTime);
+	
+	/** Set engine turn on or off */
+	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
+	void SetStartEngine(bool bStartEngine);
 
 	/** Get current gear */
 	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
@@ -957,6 +985,10 @@ public:
 	/** Are gears being changed automatically? */
 	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
 	bool GetUseAutoGears() const;
+
+	/** Are gears need clutch to be changed? */
+	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
+	bool GetUseClutch() const;
 
 	/** How fast the vehicle is moving forward */
 	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
@@ -982,7 +1014,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
 	float GetSteeringInput() { return RawSteeringInput; }
 
-
+	/** Get if engine turn on or off */
+	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
+	bool GetIsEngineStarted() { return bEngineIsStarted;};
+	
 	/** Is the vehicle in park mode */
 	UFUNCTION(BlueprintCallable, Category = "Game|Components|ChaosVehicleMovement")
 	bool IsParked() const;
@@ -1110,6 +1145,14 @@ protected:
 	UPROPERTY(Transient)
 	float HandbrakeInput;
 
+	// Engine starter output to physics system.
+	UPROPERTY(Transient)
+	bool RunEngineStarterInput;
+	
+	// Engine output to physics system.
+	UPROPERTY(Transient)
+	bool StartEngineInput;
+
 	// Bypass the need for a controller in order for the controls to be processed.
 	UPROPERTY(EditAnywhere, Category = VehicleInput)
 	bool bRequiresControllerForInputs;
@@ -1203,13 +1246,15 @@ protected:
 
 	/** Read current state for simulation */
 	virtual void UpdateState(float DeltaTime);
+	
+	void CalcSlippingPoint();
 
 	/** Option to aggressively sleep the vehicle */
 	virtual void ProcessSleeping(const FControlInputs& ControlInputs);
 
 	/** Pass current state to server */
 	UFUNCTION(reliable, server, WithValidation)
-	void ServerUpdateState(float InSteeringInput, float InThrottleInput, float InBrakeInput
+	void ServerUpdateState(bool InRunEngineStarter, bool InEngineStarted, float InSteeringInput, float InThrottleInput, float InBrakeInput
 			, float InHandbrakeInput, int32 InCurrentGear, float InRollInput, float InPitchInput, float InYawInput);
 
 	// Setup
@@ -1304,4 +1349,9 @@ protected:
 	float PrevSteeringInput;
 	float PrevReplicatedSteeringInput;
 	bool bUsingNetworkPhysicsPrediction;
+
+	/** Engine starter */
+	
+	float EngineStarterTimer = 0.f;
+	bool bEngineStateChanged = false;
 };

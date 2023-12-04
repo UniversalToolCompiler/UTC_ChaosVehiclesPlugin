@@ -40,7 +40,15 @@ private:
 		int32 WheelIndex;
 		FBoneReference BoneReference;
 	};
-
+	
 	TArray<FWheelLookupData> Wheels;
+
+	struct FMechanicalAnimLookupData
+	{
+		FBoneReference DriveShaft_BoneReference;
+	};
+	FMechanicalAnimLookupData MechanicalElements;
+	
 	const FVehicleAnimationInstanceProxy* AnimInstanceProxy;	//TODO: we only cache this to use in eval where it's safe. Should change API to pass proxy into eval
+	
 };

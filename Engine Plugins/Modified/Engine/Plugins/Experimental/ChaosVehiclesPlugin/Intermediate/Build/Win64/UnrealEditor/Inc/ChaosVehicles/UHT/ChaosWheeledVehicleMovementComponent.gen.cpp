@@ -5,11 +5,11 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "ChaosVehicles/Public/ChaosWheeledVehicleMovementComponent.h"
+#include "ChaosWheeledVehicleMovementComponent.h"
 #include "../../Source/Runtime/Engine/Classes/Curves/CurveFloat.h"
 #include "../../Source/Runtime/Engine/Classes/Engine/EngineTypes.h"
-#include "ChaosVehicles/Public/SnapshotData.h"
 #include "Serialization/ArchiveUObjectFromStructuredArchive.h"
+#include "SnapshotData.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeChaosWheeledVehicleMovementComponent() {}
 // Cross Module References
@@ -20,6 +20,7 @@ void EmptyLinkFunctionForGeneratedCodeChaosWheeledVehicleMovementComponent() {}
 	CHAOSVEHICLES_API UEnum* Z_Construct_UEnum_ChaosVehicles_ESteeringType();
 	CHAOSVEHICLES_API UEnum* Z_Construct_UEnum_ChaosVehicles_ETorqueCombineMethod();
 	CHAOSVEHICLES_API UEnum* Z_Construct_UEnum_ChaosVehicles_EVehicleDifferential();
+	CHAOSVEHICLES_API UScriptStruct* Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup();
 	CHAOSVEHICLES_API UScriptStruct* Z_Construct_UScriptStruct_FChaosWheelSetup();
 	CHAOSVEHICLES_API UScriptStruct* Z_Construct_UScriptStruct_FVehicleDifferentialConfig();
 	CHAOSVEHICLES_API UScriptStruct* Z_Construct_UScriptStruct_FVehicleEngineConfig();
@@ -181,13 +182,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FWheelStatus>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::Struct_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/**\n * Structure containing information about the status of a single wheel of the vehicle.\n */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Structure containing information about the status of a single wheel of the vehicle." },
-#endif
 	};
 #endif
 	void* Z_Construct_UScriptStruct_FWheelStatus_Statics::NewStructOps()
@@ -196,13 +193,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FWheelStatus>()
 	}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bInContact_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** This wheel is in contact with the ground */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "This wheel is in contact with the ground" },
-#endif
 	};
 #endif
 	void Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bInContact_SetBit(void* Obj)
@@ -212,85 +205,57 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FWheelStatus>()
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bInContact = { "bInContact", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FWheelStatus), &Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bInContact_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bInContact_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bInContact_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_ContactPoint_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Wheel contact point */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Wheel contact point" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_ContactPoint = { "ContactPoint", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, ContactPoint), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_ContactPoint_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_ContactPoint_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_HitLocation_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Wheel contact location */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Wheel contact location" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_HitLocation = { "HitLocation", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, HitLocation), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_HitLocation_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_HitLocation_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_PhysMaterial_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Material that wheel is in contact with */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Material that wheel is in contact with" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FWeakObjectPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_PhysMaterial = { "PhysMaterial", nullptr, (EPropertyFlags)0x0014000000000000, UECodeGen_Private::EPropertyGenFlags::WeakObject, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, PhysMaterial), Z_Construct_UClass_UPhysicalMaterial_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_PhysMaterial_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_PhysMaterial_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_NormalizedSuspensionLength_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Normalized suspension length at this wheel */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Normalized suspension length at this wheel" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_NormalizedSuspensionLength = { "NormalizedSuspensionLength", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, NormalizedSuspensionLength), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_NormalizedSuspensionLength_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_NormalizedSuspensionLength_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SpringForce_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Spring Force that is occurring at wheel suspension */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Spring Force that is occurring at wheel suspension" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SpringForce = { "SpringForce", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, SpringForce), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SpringForce_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SpringForce_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipAngle_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Slip angle at the wheel - difference between wheel local direction and velocity at wheel */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Slip angle at the wheel - difference between wheel local direction and velocity at wheel" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipAngle = { "SlipAngle", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, SlipAngle), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipAngle_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipAngle_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSlipping_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Is the wheel slipping */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Is the wheel slipping" },
-#endif
 	};
 #endif
 	void Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSlipping_SetBit(void* Obj)
@@ -300,25 +265,17 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FWheelStatus>()
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSlipping = { "bIsSlipping", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FWheelStatus), &Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSlipping_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSlipping_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSlipping_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipMagnitude_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Magnitude of slippage of wheel, difference between wheel speed and ground speed */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Magnitude of slippage of wheel, difference between wheel speed and ground speed" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipMagnitude = { "SlipMagnitude", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, SlipMagnitude), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipMagnitude_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SlipMagnitude_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSkidding_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Is the wheel skidding */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Is the wheel skidding" },
-#endif
 	};
 #endif
 	void Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSkidding_SetBit(void* Obj)
@@ -328,61 +285,41 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FWheelStatus>()
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSkidding = { "bIsSkidding", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FWheelStatus), &Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSkidding_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSkidding_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bIsSkidding_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidMagnitude_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Magnitude of skid */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Magnitude of skid" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidMagnitude = { "SkidMagnitude", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, SkidMagnitude), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidMagnitude_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidMagnitude_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidNormal_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Direction of skid, i.e. normalized direction */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Direction of skid, i.e. normalized direction" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidNormal = { "SkidNormal", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, SkidNormal), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidNormal_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_SkidNormal_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_DriveTorque_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Drive torque currently applied at wheel */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Drive torque currently applied at wheel" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_DriveTorque = { "DriveTorque", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, DriveTorque), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_DriveTorque_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_DriveTorque_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_BrakeTorque_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Brake torque currently applied at wheel */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Brake torque currently applied at wheel" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_BrakeTorque = { "BrakeTorque", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FWheelStatus, BrakeTorque), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_BrakeTorque_MetaData), Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_BrakeTorque_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bABSActivated_MetaData[] = {
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Is the ABS currently engaged - useful for audio Q's */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Is the ABS currently engaged - useful for audio Q's" },
-#endif
 	};
 #endif
 	void Z_Construct_UScriptStruct_FWheelStatus_Statics::NewProp_bABSActivated_SetBit(void* Obj)
@@ -473,13 +410,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleDifferentialCon
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleDifferentialConfig_Statics::NewProp_DifferentialType_MetaData[] = {
 		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Type of differential */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Type of differential" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FVehicleDifferentialConfig_Statics::NewProp_DifferentialType = { "DifferentialType", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleDifferentialConfig, DifferentialType), Z_Construct_UEnum_ChaosVehicles_EVehicleDifferential, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleDifferentialConfig_Statics::NewProp_DifferentialType_MetaData), Z_Construct_UScriptStruct_FVehicleDifferentialConfig_Statics::NewProp_DifferentialType_MetaData) }; // 2204051849
@@ -488,13 +421,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleDifferentialCon
 		{ "Category", "Setup" },
 		{ "ClampMax", "1.0" },
 		{ "ClampMin", "0.0" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Ratio of torque split between front and rear (<0.5 means more to front, >0.5 means more to rear, works only with 4W type) */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Ratio of torque split between front and rear (<0.5 means more to front, >0.5 means more to rear, works only with 4W type)" },
-#endif
 		{ "UIMax", "1.0" },
 		{ "UIMin", "0.0" },
 	};
@@ -547,13 +476,29 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleEngineConfig>()
 #endif
 		static void* NewStructOps();
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxTorque_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxTorque;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_TorqueCurve_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_TorqueCurve;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxTorque_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_EngineIgnitionDuration_MetaData[];
 #endif
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxTorque;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_EngineIgnitionDuration;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_EngineStarterDuration_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_EngineStarterDuration;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxEngineStarterRPM_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxEngineStarterRPM;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_EngineStarterCurve_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_EngineStarterCurve;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxRPM_MetaData[];
 #endif
@@ -562,6 +507,10 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleEngineConfig>()
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_EngineIdleRPM_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_EngineIdleRPM;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_EngineSlippingPoint_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_EngineSlippingPoint;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_EngineBrakeEffect_MetaData[];
 #endif
@@ -587,42 +536,66 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleEngineConfig>()
 		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FVehicleEngineConfig>();
 	}
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve_MetaData[] = {
-		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Torque [Normalized 0..1] for a given RPM */" },
-#endif
-		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Torque [Normalized 0..1] for a given RPM" },
-#endif
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve = { "TorqueCurve", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, TorqueCurve), Z_Construct_UScriptStruct_FRuntimeFloatCurve, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve_MetaData) }; // 3321759441
-#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxTorque_MetaData[] = {
 		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Max Engine Torque (Nm) is multiplied by TorqueCurve */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Max Engine Torque (Nm) is multiplied by TorqueCurve" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxTorque = { "MaxTorque", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, MaxTorque), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxTorque_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxTorque_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve_MetaData[] = {
+		{ "Category", "Setup" },
+		{ "Comment", "/** Torque [Normalized 0..1] for a given RPM */" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ToolTip", "Torque [Normalized 0..1] for a given RPM" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve = { "TorqueCurve", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, TorqueCurve), Z_Construct_UScriptStruct_FRuntimeFloatCurve, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve_MetaData) }; // 3321759441
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIgnitionDuration_MetaData[] = {
+		{ "Category", "Setup" },
+		{ "Comment", "/** Time to initialize the engine */" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ToolTip", "Time to initialize the engine" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIgnitionDuration = { "EngineIgnitionDuration", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, EngineIgnitionDuration), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIgnitionDuration_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIgnitionDuration_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterDuration_MetaData[] = {
+		{ "Category", "Setup" },
+		{ "Comment", "/** Time to start the engine */" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ToolTip", "Time to start the engine" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterDuration = { "EngineStarterDuration", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, EngineStarterDuration), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterDuration_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterDuration_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxEngineStarterRPM_MetaData[] = {
+		{ "Category", "Setup" },
+		{ "Comment", "/** Max engine starter speed */" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ToolTip", "Max engine starter speed" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxEngineStarterRPM = { "MaxEngineStarterRPM", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, MaxEngineStarterRPM), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxEngineStarterRPM_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxEngineStarterRPM_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterCurve_MetaData[] = {
+		{ "Category", "Setup" },
+		{ "Comment", "/** Engine RPM at given time when starting the engine */" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ToolTip", "Engine RPM at given time when starting the engine" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterCurve = { "EngineStarterCurve", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, EngineStarterCurve), Z_Construct_UScriptStruct_FRuntimeFloatCurve, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterCurve_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterCurve_MetaData) }; // 3321759441
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxRPM_MetaData[] = {
 		{ "Category", "Setup" },
 		{ "ClampMin", "0.01" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Maximum revolutions per minute of the engine */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Maximum revolutions per minute of the engine" },
-#endif
 		{ "UIMin", "0.01" },
 	};
 #endif
@@ -631,27 +604,30 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleEngineConfig>()
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIdleRPM_MetaData[] = {
 		{ "Category", "Setup" },
 		{ "ClampMin", "0.01" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Idle RMP of engine then in neutral/stationary */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Idle RMP of engine then in neutral/stationary" },
-#endif
 		{ "UIMin", "0.01" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIdleRPM = { "EngineIdleRPM", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, EngineIdleRPM), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIdleRPM_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIdleRPM_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineSlippingPoint_MetaData[] = {
+		{ "Category", "Setup" },
+		{ "ClampMin", "0.01" },
+		{ "Comment", "/** At which RPM engine stalls */" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ToolTip", "At which RPM engine stalls" },
+		{ "UIMin", "0.01" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineSlippingPoint = { "EngineSlippingPoint", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, EngineSlippingPoint), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineSlippingPoint_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineSlippingPoint_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineBrakeEffect_MetaData[] = {
 		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Braking effect from engine, when throttle released */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Braking effect from engine, when throttle released" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineBrakeEffect = { "EngineBrakeEffect", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, EngineBrakeEffect), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineBrakeEffect_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineBrakeEffect_MetaData) };
@@ -659,13 +635,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleEngineConfig>()
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineRevUpMOI_MetaData[] = {
 		{ "Category", "Setup" },
 		{ "ClampMin", "0.01" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Affects how fast the engine RPM speed up */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Affects how fast the engine RPM speed up" },
-#endif
 		{ "UIMin", "0.01" },
 	};
 #endif
@@ -674,22 +646,23 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleEngineConfig>()
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineRevDownRate_MetaData[] = {
 		{ "Category", "Setup" },
 		{ "ClampMin", "0.01" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Affects how fast the engine RPM slows down */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Affects how fast the engine RPM slows down" },
-#endif
 		{ "UIMin", "0.01" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineRevDownRate = { "EngineRevDownRate", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleEngineConfig, EngineRevDownRate), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineRevDownRate_MetaData), Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineRevDownRate_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxTorque,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_TorqueCurve,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIgnitionDuration,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterDuration,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxEngineStarterRPM,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineStarterCurve,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_MaxRPM,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineIdleRPM,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineSlippingPoint,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineBrakeEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineRevUpMOI,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewProp_EngineRevDownRate,
@@ -741,6 +714,11 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 		static void NewProp_bUseAutomaticGears_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_bUseAutomaticGears;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bUseClutch_MetaData[];
+#endif
+		static void NewProp_bUseClutch_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bUseClutch;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_bUseAutoReverse_MetaData[];
 #endif
 		static void NewProp_bUseAutoReverse_SetBit(void* Obj);
@@ -790,14 +768,10 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutomaticGears_MetaData[] = {
 		{ "Category", "VehicleSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Whether to use automatic transmission */" },
-#endif
 		{ "DisplayName", "Automatic Transmission" },
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Whether to use automatic transmission" },
-#endif
 	};
 #endif
 	void Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutomaticGears_SetBit(void* Obj)
@@ -805,6 +779,21 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 		((FVehicleTransmissionConfig*)Obj)->bUseAutomaticGears = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutomaticGears = { "bUseAutomaticGears", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FVehicleTransmissionConfig), &Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutomaticGears_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutomaticGears_MetaData), Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutomaticGears_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseClutch_MetaData[] = {
+		{ "Category", "VehicleSetup" },
+		{ "Comment", "/** Whether to use clutch to change gear */" },
+		{ "DisplayName", "Use Clutch" },
+		{ "EditCondition", "!bUseAutomaticGears" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ToolTip", "Whether to use clutch to change gear" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseClutch_SetBit(void* Obj)
+	{
+		((FVehicleTransmissionConfig*)Obj)->bUseClutch = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseClutch = { "bUseClutch", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FVehicleTransmissionConfig), &Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseClutch_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseClutch_MetaData), Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseClutch_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutoReverse_MetaData[] = {
 		{ "Category", "VehicleSetup" },
@@ -820,13 +809,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_FinalRatio_MetaData[] = {
 		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** The final gear ratio multiplies the transmission gear ratios.*/" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "The final gear ratio multiplies the transmission gear ratios." },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_FinalRatio = { "FinalRatio", nullptr, (EPropertyFlags)0x0010040000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleTransmissionConfig, FinalRatio), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_FinalRatio_MetaData), Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_FinalRatio_MetaData) };
@@ -834,13 +819,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ForwardGearRatios_MetaData[] = {
 		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Forward gear ratios */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Forward gear ratios" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ForwardGearRatios = { "ForwardGearRatios", nullptr, (EPropertyFlags)0x0010040000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleTransmissionConfig, ForwardGearRatios), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ForwardGearRatios_MetaData), Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ForwardGearRatios_MetaData) };
@@ -848,13 +829,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ReverseGearRatios_MetaData[] = {
 		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Reverse gear ratio(s) */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Reverse gear ratio(s)" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ReverseGearRatios = { "ReverseGearRatios", nullptr, (EPropertyFlags)0x0010040000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleTransmissionConfig, ReverseGearRatios), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ReverseGearRatios_MetaData), Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ReverseGearRatios_MetaData) };
@@ -863,13 +840,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 		{ "Category", "Setup" },
 		{ "ClampMax", "50000.0" },
 		{ "ClampMin", "0.0" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Engine Revs at which gear up change ocurrs */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Engine Revs at which gear up change ocurrs" },
-#endif
 		{ "UIMax", "50000.0" },
 		{ "UIMin", "0.0" },
 	};
@@ -880,13 +853,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 		{ "Category", "Setup" },
 		{ "ClampMax", "50000.0" },
 		{ "ClampMin", "0.0" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Engine Revs at which gear down change ocurrs */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Engine Revs at which gear down change ocurrs" },
-#endif
 		{ "UIMax", "50000.0" },
 		{ "UIMin", "0.0" },
 	};
@@ -896,13 +865,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_GearChangeTime_MetaData[] = {
 		{ "Category", "Setup" },
 		{ "ClampMin", "0.0" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Time it takes to switch gears (seconds) */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Time it takes to switch gears (seconds)" },
-#endif
 		{ "UIMin", "0.0" },
 	};
 #endif
@@ -910,18 +875,15 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_TransmissionEfficiency_MetaData[] = {
 		{ "Category", "Setup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Mechanical frictional losses mean transmission might operate at 0.94 (94% efficiency) */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Mechanical frictional losses mean transmission might operate at 0.94 (94% efficiency)" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_TransmissionEfficiency = { "TransmissionEfficiency", nullptr, (EPropertyFlags)0x0010040000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleTransmissionConfig, TransmissionEfficiency), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_TransmissionEfficiency_MetaData), Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_TransmissionEfficiency_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutomaticGears,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseClutch,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_bUseAutoReverse,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_FinalRatio,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewProp_ForwardGearRatios_Inner,
@@ -985,14 +947,10 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleTransmissionCon
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_ChaosVehicles_ESteeringType_Statics::Enum_MetaDataParams[] = {
 		{ "Ackermann.Name", "ESteeringType::Ackermann" },
 		{ "AngleRatio.Name", "ESteeringType::AngleRatio" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Single angle : both wheels steer by the same amount\n *  AngleRatio   : outer wheels on corner steer less than the inner ones by set ratio\n *  Ackermann\x09 : Ackermann steering principle is applied */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
 		{ "SingleAngle.Name", "ESteeringType::SingleAngle" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Single angle : both wheels steer by the same amount\nAngleRatio   : outer wheels on corner steer less than the inner ones by set ratio\nAckermann   : Ackermann steering principle is applied" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_ChaosVehicles_ESteeringType_Statics::EnumParams = {
@@ -1063,39 +1021,27 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FVehicleSteeringConfig>
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringType_MetaData[] = {
 		{ "Category", "SteeringSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Single angle : both wheels steer by the same amount\n\x09 *  AngleRatio   : outer wheels on corner steer less than the inner ones by set ratio \n\x09 *  Ackermann\x09 : Ackermann steering principle is applied */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Single angle : both wheels steer by the same amount\nAngleRatio   : outer wheels on corner steer less than the inner ones by set ratio\nAckermann    : Ackermann steering principle is applied" },
-#endif
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringType = { "SteeringType", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleSteeringConfig, SteeringType), Z_Construct_UEnum_ChaosVehicles_ESteeringType, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringType_MetaData), Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringType_MetaData) }; // 3416032238
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringType = { "SteeringType", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleSteeringConfig, SteeringType), Z_Construct_UEnum_ChaosVehicles_ESteeringType, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringType_MetaData), Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringType_MetaData) }; // 2710885376
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_AngleRatio_MetaData[] = {
 		{ "Category", "SteeringSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Only applies when AngleRatio is selected */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Only applies when AngleRatio is selected" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_AngleRatio = { "AngleRatio", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleSteeringConfig, AngleRatio), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_AngleRatio_MetaData), Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_AngleRatio_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringCurve_MetaData[] = {
 		{ "Category", "SteeringSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Maximum steering versus forward speed (MPH) */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Maximum steering versus forward speed (MPH)" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringCurve = { "SteeringCurve", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FVehicleSteeringConfig, SteeringCurve), Z_Construct_UScriptStruct_FRuntimeFloatCurve, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringCurve_MetaData), Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewProp_SteeringCurve_MetaData) }; // 3321759441
@@ -1173,39 +1119,27 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_WheelClass_MetaData[] = {
 		{ "Category", "WheelSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "// The wheel class to use\n" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "The wheel class to use" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_WheelClass = { "WheelClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FChaosWheelSetup, WheelClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UChaosVehicleWheel_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_WheelClass_MetaData), Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_WheelClass_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_BoneName_MetaData[] = {
 		{ "Category", "WheelSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "// Bone name on mesh to create wheel at\n" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Bone name on mesh to create wheel at" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FNamePropertyParams Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_BoneName = { "BoneName", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FChaosWheelSetup, BoneName), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_BoneName_MetaData), Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_BoneName_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_AdditionalOffset_MetaData[] = {
 		{ "Category", "WheelSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "// Additional offset to give the wheels for this axle.\n" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Additional offset to give the wheels for this axle." },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_AdditionalOffset = { "AdditionalOffset", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FChaosWheelSetup, AdditionalOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_AdditionalOffset_MetaData), Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewProp_AdditionalOffset_MetaData) };
@@ -1235,6 +1169,73 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_ChaosWheelSetup.InnerSingleton, Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::ReturnStructParams);
 		}
 		return Z_Registration_Info_UScriptStruct_ChaosWheelSetup.InnerSingleton;
+	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup;
+class UScriptStruct* FChaosMechanicalAnimSetup::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup, (UObject*)Z_Construct_UPackage__Script_ChaosVehicles(), TEXT("ChaosMechanicalAnimSetup"));
+	}
+	return Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup.OuterSingleton;
+}
+template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosMechanicalAnimSetup>()
+{
+	return FChaosMechanicalAnimSetup::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DriveShaftBoneName_MetaData[];
+#endif
+		static const UECodeGen_Private::FNamePropertyParams NewProp_DriveShaftBoneName;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::Struct_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FChaosMechanicalAnimSetup>();
+	}
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::NewProp_DriveShaftBoneName_MetaData[] = {
+		{ "Category", "Mechanical Animations" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::NewProp_DriveShaftBoneName = { "DriveShaftBoneName", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FChaosMechanicalAnimSetup, DriveShaftBoneName), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::NewProp_DriveShaftBoneName_MetaData), Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::NewProp_DriveShaftBoneName_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::NewProp_DriveShaftBoneName,
+	};
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_ChaosVehicles,
+		nullptr,
+		&NewStructOps,
+		"ChaosMechanicalAnimSetup",
+		Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::PropPointers),
+		sizeof(FChaosMechanicalAnimSetup),
+		alignof(FChaosMechanicalAnimSetup),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000201),
+		METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::Struct_MetaDataParams), Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::Struct_MetaDataParams)
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::PropPointers) < 2048);
+	UScriptStruct* Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup()
+	{
+		if (!Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup.InnerSingleton, Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::ReturnStructParams);
+		}
+		return Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup.InnerSingleton;
 	}
 	DEFINE_FUNCTION(UChaosWheeledVehicleMovementComponent::execSetSuspensionParams)
 	{
@@ -1665,14 +1666,14 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Snapshot = { "Snapshot", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, Snapshot), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Snapshot_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Snapshot_MetaData) }; // 3808539307
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Snapshot = { "Snapshot", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, Snapshot), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Snapshot_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Snapshot_MetaData) }; // 2084735378
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Transform = { "Transform", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, Transform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_LinearVelocity = { "LinearVelocity", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, LinearVelocity), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_AngularVelocity = { "AngularVelocity", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, AngularVelocity), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_SelectedGear = { "SelectedGear", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, SelectedGear), METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_EngineRPM = { "EngineRPM", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, EngineRPM), METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_WheelSnapshots_Inner = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(0, nullptr) }; // 2058980554
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_WheelSnapshots = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, WheelSnapshots), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 2058980554
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_WheelSnapshots_Inner = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(0, nullptr) }; // 730975751
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_WheelSnapshots = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheeledSnapshot_Parms, WheelSnapshots), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 730975751
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Snapshot,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot_Statics::NewProp_Transform,
@@ -1732,7 +1733,7 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_Snapshot = { "Snapshot", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheelSnapshot_Parms, Snapshot), Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_Snapshot_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_Snapshot_MetaData) }; // 2058980554
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_Snapshot = { "Snapshot", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheelSnapshot_Parms, Snapshot), Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_Snapshot_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_Snapshot_MetaData) }; // 730975751
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_SuspensionOffset = { "SuspensionOffset", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheelSnapshot_Parms, SuspensionOffset), METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_WheelRotationAngle = { "WheelRotationAngle", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheelSnapshot_Parms, WheelRotationAngle), METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot_Statics::NewProp_SteeringAngle = { "SteeringAngle", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheelSnapshot_Parms, SteeringAngle), METADATA_PARAMS(0, nullptr) };
@@ -1817,7 +1818,7 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus_Statics::NewProp_Status = { "Status", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheelStatus_Parms, Status), Z_Construct_UScriptStruct_FWheelStatus, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus_Statics::NewProp_Status_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus_Statics::NewProp_Status_MetaData) }; // 4839846
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus_Statics::NewProp_Status = { "Status", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventBreakWheelStatus_Parms, Status), Z_Construct_UScriptStruct_FWheelStatus, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus_Statics::NewProp_Status_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus_Statics::NewProp_Status_MetaData) }; // 958082583
 	void Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus_Statics::NewProp_bInContact_SetBit(void* Obj)
 	{
 		((ChaosWheeledVehicleMovementComponent_eventBreakWheelStatus_Parms*)Obj)->bInContact = 1;
@@ -1908,13 +1909,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Enable or completely bypass the ProcessMechanicalSimulation call */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Enable or completely bypass the ProcessMechanicalSimulation call" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "EnableMechanicalSim", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim_Statics::ChaosWheeledVehicleMovementComponent_eventEnableMechanicalSim_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim_Statics::Function_MetaDataParams) };
@@ -1954,13 +1951,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Enable or completely bypass the ApplySuspensionForces call */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Enable or completely bypass the ApplySuspensionForces call" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "EnableSuspension", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension_Statics::ChaosWheeledVehicleMovementComponent_eventEnableSuspension_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension_Statics::Function_MetaDataParams) };
@@ -2000,13 +1993,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Enable or completely bypass the ApplyWheelFrictionForces call */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Enable or completely bypass the ApplyWheelFrictionForces call" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "EnableWheelFriction", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction_Statics::ChaosWheeledVehicleMovementComponent_eventEnableWheelFriction_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction_Statics::Function_MetaDataParams) };
@@ -2041,13 +2030,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Get current engine's max rotation speed */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Get current engine's max rotation speed" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "GetEngineMaxRotationSpeed", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed_Statics::ChaosWheeledVehicleMovementComponent_eventGetEngineMaxRotationSpeed_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed_Statics::Function_MetaDataParams) };
@@ -2082,13 +2067,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Get current engine's rotation speed */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Get current engine's rotation speed" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "GetEngineRotationSpeed", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed_Statics::ChaosWheeledVehicleMovementComponent_eventGetEngineRotationSpeed_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed_Statics::Function_MetaDataParams) };
@@ -2151,20 +2132,16 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventGetSnapshot_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(0, nullptr) }; // 3808539307
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventGetSnapshot_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(0, nullptr) }; // 2084735378
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::NewProp_ReturnValue,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Grab a snapshot of the vehicle instance dynamic state */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Grab a snapshot of the vehicle instance dynamic state" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "GetSnapshot", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::ChaosWheeledVehicleMovementComponent_eventGetSnapshot_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot_Statics::Function_MetaDataParams) };
@@ -2203,7 +2180,7 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000008000582, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventGetWheelState_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheelStatus, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_ReturnValue_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_ReturnValue_MetaData) }; // 4839846
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000008000582, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventGetWheelState_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheelStatus, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_ReturnValue_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_ReturnValue_MetaData) }; // 958082583
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_WheelIndex,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::NewProp_ReturnValue,
@@ -2211,13 +2188,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Get a wheels current simulation state */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Get a wheels current simulation state" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "GetWheelState", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::ChaosWheeledVehicleMovementComponent_eventGetWheelState_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState_Statics::Function_MetaDataParams) };
@@ -2266,14 +2239,14 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_AngularVelocity = { "AngularVelocity", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheeledSnapshot_Parms, AngularVelocity), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_SelectedGear = { "SelectedGear", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheeledSnapshot_Parms, SelectedGear), METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_EngineRPM = { "EngineRPM", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheeledSnapshot_Parms, EngineRPM), METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots_Inner = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(0, nullptr) }; // 2058980554
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots_Inner = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(0, nullptr) }; // 730975751
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheeledSnapshot_Parms, WheelSnapshots), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots_MetaData) }; // 2058980554
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheeledSnapshot_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(0, nullptr) }; // 3808539307
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots = { "WheelSnapshots", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheeledSnapshot_Parms, WheelSnapshots), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_WheelSnapshots_MetaData) }; // 730975751
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheeledSnapshot_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(0, nullptr) }; // 2084735378
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_Transform,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot_Statics::NewProp_LinearVelocity,
@@ -2330,7 +2303,7 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::NewProp_SteeringAngle = { "SteeringAngle", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheelSnapshot_Parms, SteeringAngle), METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::NewProp_WheelRadius = { "WheelRadius", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheelSnapshot_Parms, WheelRadius), METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::NewProp_WheelAngularVelocity = { "WheelAngularVelocity", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheelSnapshot_Parms, WheelAngularVelocity), METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheelSnapshot_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(0, nullptr) }; // 2058980554
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheelSnapshot_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheelSnapshot, METADATA_PARAMS(0, nullptr) }; // 730975751
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::NewProp_SuspensionOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot_Statics::NewProp_WheelRotationAngle,
@@ -2432,7 +2405,7 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		((ChaosWheeledVehicleMovementComponent_eventMakeWheelStatus_Parms*)Obj)->bABSActivated = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus_Statics::NewProp_bABSActivated = { "bABSActivated", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ChaosWheeledVehicleMovementComponent_eventMakeWheelStatus_Parms), &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus_Statics::NewProp_bABSActivated_SetBit, METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheelStatus_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheelStatus, METADATA_PARAMS(0, nullptr) }; // 4839846
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventMakeWheelStatus_Parms, ReturnValue), Z_Construct_UScriptStruct_FWheelStatus, METADATA_PARAMS(0, nullptr) }; // 958082583
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus_Statics::NewProp_bInContact,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus_Statics::NewProp_ContactPoint,
@@ -2891,13 +2864,9 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "//////////////////////////////////////////////////////////////////////////\n// change handling via blueprint at runtime\n" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "change handling via blueprint at runtime" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "SetMaxEngineTorque", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque_Statics::ChaosWheeledVehicleMovementComponent_eventSetMaxEngineTorque_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque_Statics::Function_MetaDataParams) };
@@ -2933,20 +2902,16 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::NewProp_SnapshotIn = { "SnapshotIn", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventSetSnapshot_Parms, SnapshotIn), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::NewProp_SnapshotIn_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::NewProp_SnapshotIn_MetaData) }; // 3808539307
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::NewProp_SnapshotIn = { "SnapshotIn", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ChaosWheeledVehicleMovementComponent_eventSetSnapshot_Parms, SnapshotIn), Z_Construct_UScriptStruct_FWheeledSnaphotData, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::NewProp_SnapshotIn_MetaData), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::NewProp_SnapshotIn_MetaData) }; // 2084735378
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::NewProp_SnapshotIn,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Game|Components|ChaosWheeledVehicleMovement" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Set snapshot of vehicle instance dynamic state */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Set snapshot of vehicle instance dynamic state" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, nullptr, "SetSnapshot", nullptr, nullptr, Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::PropPointers), sizeof(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::ChaosWheeledVehicleMovementComponent_eventSetSnapshot_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::Function_MetaDataParams), Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot_Statics::Function_MetaDataParams) };
@@ -3388,6 +3353,10 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MechanicalAnimationSetup_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_MechanicalAnimationSetup;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_bSuspensionEnabled_MetaData[];
 #endif
 		static void NewProp_bSuspensionEnabled_SetBit(void* Obj);
@@ -3447,20 +3416,20 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot, "BreakWheeledSnapshot" }, // 3791883032
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot, "BreakWheelSnapshot" }, // 2884277423
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus, "BreakWheelStatus" }, // 3888594152
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim, "EnableMechanicalSim" }, // 1635503034
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension, "EnableSuspension" }, // 904209640
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction, "EnableWheelFriction" }, // 2119694690
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed, "GetEngineMaxRotationSpeed" }, // 1375957550
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed, "GetEngineRotationSpeed" }, // 2362655497
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheeledSnapshot, "BreakWheeledSnapshot" }, // 1291150383
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelSnapshot, "BreakWheelSnapshot" }, // 4056058621
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_BreakWheelStatus, "BreakWheelStatus" }, // 1824985103
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableMechanicalSim, "EnableMechanicalSim" }, // 2106542211
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableSuspension, "EnableSuspension" }, // 1626506391
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_EnableWheelFriction, "EnableWheelFriction" }, // 3213606974
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineMaxRotationSpeed, "GetEngineMaxRotationSpeed" }, // 1142597465
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetEngineRotationSpeed, "GetEngineRotationSpeed" }, // 4099340166
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetNumWheels, "GetNumWheels" }, // 3352440624
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot, "GetSnapshot" }, // 766685438
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState, "GetWheelState" }, // 157133936
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot, "MakeWheeledSnapshot" }, // 4094252950
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot, "MakeWheelSnapshot" }, // 2011399179
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus, "MakeWheelStatus" }, // 2196913165
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetSnapshot, "GetSnapshot" }, // 3760176136
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_GetWheelState, "GetWheelState" }, // 493353044
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheeledSnapshot, "MakeWheeledSnapshot" }, // 381936306
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelSnapshot, "MakeWheelSnapshot" }, // 3317243618
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_MakeWheelStatus, "MakeWheelStatus" }, // 1964700877
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetABSEnabled, "SetABSEnabled" }, // 290312290
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetAffectedByBrake, "SetAffectedByBrake" }, // 1793761203
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetAffectedByEngine, "SetAffectedByEngine" }, // 1183822084
@@ -3471,8 +3440,8 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetDownforceCoefficient, "SetDownforceCoefficient" }, // 2618776950
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetDragCoefficient, "SetDragCoefficient" }, // 1578248579
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetDriveTorque, "SetDriveTorque" }, // 2914742107
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque, "SetMaxEngineTorque" }, // 2814462156
-		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot, "SetSnapshot" }, // 1761150063
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetMaxEngineTorque, "SetMaxEngineTorque" }, // 784993939
+		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSnapshot, "SetSnapshot" }, // 3847827248
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetSuspensionParams, "SetSuspensionParams" }, // 2227476107
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetTorqueCombineMethod, "SetTorqueCombineMethod" }, // 2793560548
 		{ &Z_Construct_UFunction_UChaosWheeledVehicleMovementComponent_SetTractionControlEnabled, "SetTractionControlEnabled" }, // 1100485709
@@ -3489,14 +3458,20 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::Class_MetaDataParams[] = {
 		{ "BlueprintSpawnableComponent", "" },
 		{ "ClassGroupNames", "Physics" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "//////////////////////////////////////////////////////////////////////////\n" },
-#endif
 		{ "HideCategories", "PlanarMovement Components|Movement|Planar Activation Components|Activation PlanarMovement Components|Movement|Planar Activation Components|Activation" },
 		{ "IncludePath", "ChaosWheeledVehicleMovementComponent.h" },
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_MechanicalAnimationSetup_MetaData[] = {
+		{ "Category", "MechanicalAnimation" },
+		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
+		{ "ShowOnlyInnerProperties", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_MechanicalAnimationSetup = { "MechanicalAnimationSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, MechanicalAnimationSetup), Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_MechanicalAnimationSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_MechanicalAnimationSetup_MetaData) }; // 2148583062
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bSuspensionEnabled_MetaData[] = {
 		{ "Category", "WheelSetup" },
@@ -3530,20 +3505,16 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 		((UChaosWheeledVehicleMovementComponent*)Obj)->bLegacyWheelFrictionPosition = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bLegacyWheelFrictionPosition = { "bLegacyWheelFrictionPosition", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UChaosWheeledVehicleMovementComponent), &Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bLegacyWheelFrictionPosition_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bLegacyWheelFrictionPosition_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bLegacyWheelFrictionPosition_MetaData) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups_Inner = { "WheelSetups", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FChaosWheelSetup, METADATA_PARAMS(0, nullptr) }; // 520707120
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups_Inner = { "WheelSetups", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FChaosWheelSetup, METADATA_PARAMS(0, nullptr) }; // 1217111098
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups_MetaData[] = {
 		{ "Category", "WheelSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Wheels to create */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Wheels to create" },
-#endif
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups = { "WheelSetups", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, WheelSetups), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups_MetaData) }; // 520707120
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups = { "WheelSetups", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, WheelSetups), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelSetups_MetaData) }; // 1217111098
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_WheelTraceCollisionResponses_MetaData[] = {
 		{ "Category", "Custom" },
@@ -3565,73 +3536,54 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_EngineSetup_MetaData[] = {
 		{ "Category", "MechanicalSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Engine */" },
-#endif
 		{ "EditCondition", "bMechanicalSimEnabled" },
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Engine" },
-#endif
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_EngineSetup = { "EngineSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, EngineSetup), Z_Construct_UScriptStruct_FVehicleEngineConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_EngineSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_EngineSetup_MetaData) }; // 488296922
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_EngineSetup = { "EngineSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, EngineSetup), Z_Construct_UScriptStruct_FVehicleEngineConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_EngineSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_EngineSetup_MetaData) }; // 3558002050
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_DifferentialSetup_MetaData[] = {
 		{ "Category", "MechanicalSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Differential */" },
-#endif
 		{ "EditCondition", "bMechanicalSimEnabled" },
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Differential" },
-#endif
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_DifferentialSetup = { "DifferentialSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, DifferentialSetup), Z_Construct_UScriptStruct_FVehicleDifferentialConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_DifferentialSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_DifferentialSetup_MetaData) }; // 2693091274
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_DifferentialSetup = { "DifferentialSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, DifferentialSetup), Z_Construct_UScriptStruct_FVehicleDifferentialConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_DifferentialSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_DifferentialSetup_MetaData) }; // 1109480676
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_TransmissionSetup_MetaData[] = {
 		{ "Category", "MechanicalSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Transmission data */" },
-#endif
 		{ "EditCondition", "bMechanicalSimEnabled" },
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Transmission data" },
-#endif
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_TransmissionSetup = { "TransmissionSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, TransmissionSetup), Z_Construct_UScriptStruct_FVehicleTransmissionConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_TransmissionSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_TransmissionSetup_MetaData) }; // 1695855946
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_TransmissionSetup = { "TransmissionSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, TransmissionSetup), Z_Construct_UScriptStruct_FVehicleTransmissionConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_TransmissionSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_TransmissionSetup_MetaData) }; // 3908650820
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_SteeringSetup_MetaData[] = {
 		{ "Category", "SteeringSetup" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "/** Transmission data */" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Transmission data" },
-#endif
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_SteeringSetup = { "SteeringSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, SteeringSetup), Z_Construct_UScriptStruct_FVehicleSteeringConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_SteeringSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_SteeringSetup_MetaData) }; // 2659464998
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_SteeringSetup = { "SteeringSetup", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, SteeringSetup), Z_Construct_UScriptStruct_FVehicleSteeringConfig, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_SteeringSetup_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_SteeringSetup_MetaData) }; // 2301188182
 	const UECodeGen_Private::FObjectPtrPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_Wheels_Inner = { "Wheels", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UChaosVehicleWheel_NoRegister, METADATA_PARAMS(0, nullptr) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_Wheels_MetaData[] = {
 		{ "Category", "Vehicle" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "// Our instanced wheels\n" },
-#endif
 		{ "ModuleRelativePath", "Public/ChaosWheeledVehicleMovementComponent.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Our instanced wheels" },
-#endif
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_Wheels = { "Wheels", nullptr, (EPropertyFlags)0x0014000000202014, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UChaosWheeledVehicleMovementComponent, Wheels), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_Wheels_MetaData), Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_Wheels_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_MechanicalAnimationSetup,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bSuspensionEnabled,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bWheelFrictionEnabled,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UChaosWheeledVehicleMovementComponent_Statics::NewProp_bLegacyWheelFrictionPosition,
@@ -3680,29 +3632,30 @@ template<> CHAOSVEHICLES_API UScriptStruct* StaticStruct<FChaosWheelSetup>()
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UChaosWheeledVehicleMovementComponent);
 	UChaosWheeledVehicleMovementComponent::~UChaosWheeledVehicleMovementComponent() {}
 	IMPLEMENT_FSTRUCTUREDARCHIVE_SERIALIZER(UChaosWheeledVehicleMovementComponent)
-	struct Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics
+	struct Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics
 	{
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::EnumInfo[] = {
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::EnumInfo[] = {
 		{ EVehicleDifferential_StaticEnum, TEXT("EVehicleDifferential"), &Z_Registration_Info_UEnum_EVehicleDifferential, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2204051849U) },
-		{ ESteeringType_StaticEnum, TEXT("ESteeringType"), &Z_Registration_Info_UEnum_ESteeringType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3416032238U) },
+		{ ESteeringType_StaticEnum, TEXT("ESteeringType"), &Z_Registration_Info_UEnum_ESteeringType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2710885376U) },
 	};
-	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ScriptStructInfo[] = {
-		{ FWheelStatus::StaticStruct, Z_Construct_UScriptStruct_FWheelStatus_Statics::NewStructOps, TEXT("WheelStatus"), &Z_Registration_Info_UScriptStruct_WheelStatus, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FWheelStatus), 4839846U) },
-		{ FVehicleDifferentialConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleDifferentialConfig_Statics::NewStructOps, TEXT("VehicleDifferentialConfig"), &Z_Registration_Info_UScriptStruct_VehicleDifferentialConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleDifferentialConfig), 2693091274U) },
-		{ FVehicleEngineConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewStructOps, TEXT("VehicleEngineConfig"), &Z_Registration_Info_UScriptStruct_VehicleEngineConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleEngineConfig), 488296922U) },
-		{ FVehicleTransmissionConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewStructOps, TEXT("VehicleTransmissionConfig"), &Z_Registration_Info_UScriptStruct_VehicleTransmissionConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleTransmissionConfig), 1695855946U) },
-		{ FVehicleSteeringConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewStructOps, TEXT("VehicleSteeringConfig"), &Z_Registration_Info_UScriptStruct_VehicleSteeringConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleSteeringConfig), 2659464998U) },
-		{ FChaosWheelSetup::StaticStruct, Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewStructOps, TEXT("ChaosWheelSetup"), &Z_Registration_Info_UScriptStruct_ChaosWheelSetup, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FChaosWheelSetup), 520707120U) },
+	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ScriptStructInfo[] = {
+		{ FWheelStatus::StaticStruct, Z_Construct_UScriptStruct_FWheelStatus_Statics::NewStructOps, TEXT("WheelStatus"), &Z_Registration_Info_UScriptStruct_WheelStatus, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FWheelStatus), 958082583U) },
+		{ FVehicleDifferentialConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleDifferentialConfig_Statics::NewStructOps, TEXT("VehicleDifferentialConfig"), &Z_Registration_Info_UScriptStruct_VehicleDifferentialConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleDifferentialConfig), 1109480676U) },
+		{ FVehicleEngineConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleEngineConfig_Statics::NewStructOps, TEXT("VehicleEngineConfig"), &Z_Registration_Info_UScriptStruct_VehicleEngineConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleEngineConfig), 3558002050U) },
+		{ FVehicleTransmissionConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleTransmissionConfig_Statics::NewStructOps, TEXT("VehicleTransmissionConfig"), &Z_Registration_Info_UScriptStruct_VehicleTransmissionConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleTransmissionConfig), 3908650820U) },
+		{ FVehicleSteeringConfig::StaticStruct, Z_Construct_UScriptStruct_FVehicleSteeringConfig_Statics::NewStructOps, TEXT("VehicleSteeringConfig"), &Z_Registration_Info_UScriptStruct_VehicleSteeringConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVehicleSteeringConfig), 2301188182U) },
+		{ FChaosWheelSetup::StaticStruct, Z_Construct_UScriptStruct_FChaosWheelSetup_Statics::NewStructOps, TEXT("ChaosWheelSetup"), &Z_Registration_Info_UScriptStruct_ChaosWheelSetup, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FChaosWheelSetup), 1217111098U) },
+		{ FChaosMechanicalAnimSetup::StaticStruct, Z_Construct_UScriptStruct_FChaosMechanicalAnimSetup_Statics::NewStructOps, TEXT("ChaosMechanicalAnimSetup"), &Z_Registration_Info_UScriptStruct_ChaosMechanicalAnimSetup, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FChaosMechanicalAnimSetup), 2148583062U) },
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, UChaosWheeledVehicleMovementComponent::StaticClass, TEXT("UChaosWheeledVehicleMovementComponent"), &Z_Registration_Info_UClass_UChaosWheeledVehicleMovementComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UChaosWheeledVehicleMovementComponent), 667679175U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UChaosWheeledVehicleMovementComponent, UChaosWheeledVehicleMovementComponent::StaticClass, TEXT("UChaosWheeledVehicleMovementComponent"), &Z_Registration_Info_UClass_UChaosWheeledVehicleMovementComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UChaosWheeledVehicleMovementComponent), 451975750U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_335184601(TEXT("/Script/ChaosVehicles"),
-		Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ClassInfo),
-		Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ScriptStructInfo),
-		Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projets_UE5_CarRnD_5_3_Plugins_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::EnumInfo));
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_13582843(TEXT("/Script/ChaosVehicles"),
+		Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ClassInfo),
+		Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::ScriptStructInfo),
+		Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Engine_Plugins_Experimental_ChaosVehiclesPlugin_Source_ChaosVehicles_Public_ChaosWheeledVehicleMovementComponent_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

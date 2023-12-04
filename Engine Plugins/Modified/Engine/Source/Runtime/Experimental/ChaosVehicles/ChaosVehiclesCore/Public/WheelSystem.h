@@ -84,6 +84,7 @@ struct CHAOSVEHICLESCORE_API FSimpleWheelConfig
 		, WheelMass(20.f) // [Kg]
 		, WheelRadius(30.f) // [cm]
 		, WheelWidth(20.f)
+		,WheelPivotPointOffset(0.f)
 		, MaxSteeringAngle(70)
 		, MaxBrakeTorque(2000.f)
 		, HandbrakeTorque(1000.f)
@@ -116,6 +117,7 @@ struct CHAOSVEHICLESCORE_API FSimpleWheelConfig
 	float WheelMass;			// Mass of wheel [Kg]
 	float WheelRadius;			// [cm]
 	float WheelWidth;			// [cm]
+	float WheelPivotPointOffset; // Y wheel pivot point offset
 
 	int	 MaxSteeringAngle;		// Yaw angle of steering [Degrees]
 
@@ -169,6 +171,18 @@ public:
 	void SetWheelRadius(float NewRadius)
 	{
 		Re = NewRadius;
+	}
+
+	/** Set the wheel Width */
+	void SetWheelWidth(float InWidth)
+	{
+		WheelWidth = InWidth;
+	}
+
+	/** Set the wheel pivot point offset */ 
+	void SetWheelPivotPointOffset(float InYOffset)
+	{
+		WheelPivotPointOffset = InYOffset;
 	}
 
 	/** Set the angular position in radians */
@@ -265,6 +279,12 @@ public:
 		WheelIndex = InIndex;
 	}
 
+	/** Set maximum angle for advanced sphere cast collision */
+	void SetMaxWheelCollisionAngle(float InAngle)
+	{
+		MaxWheelCollisionAngle = InAngle;
+	}
+	
 // Outputs
 
 	/**
@@ -290,6 +310,18 @@ public:
 	float GetEffectiveRadius() const
 	{
 		return Re;
+	}
+
+	/** Get the width of the wheel [cm] */
+	float GetWheelWidth() const
+	{
+		return WheelWidth;
+	}
+
+	/** Set the wheel pivot point offset */ 
+	float GetWheelPivotPointOffset() const
+	{
+		return WheelPivotPointOffset;
 	}
 
 	/** Get the angular position of the wheel [radians] */
@@ -335,6 +367,11 @@ public:
 		return SteeringAngle;
 	}
 
+	float GetMaxWheelCollisionAngle() const
+	{
+		return MaxWheelCollisionAngle;
+	}
+	
 	/** Get the current longitudinal slip value [0 no slip - using static friction, 1 full slip - using dynamic friction] */
 	float GetNormalizedLongitudinalSlip() const
 	{
@@ -401,8 +438,7 @@ public:
 	{
 		return GroundVelocityVector.Y;
 	}
-
-
+	
 	/** 
 	 * Simulate - figure out wheel lateral and longitudinal forces based on available friction at the wheel
 	 *	Wheel load force from body weight and the surface friction together determine the grip available at the wheel
@@ -433,6 +469,8 @@ public:
 	FSimpleWheelConfig::EExternalTorqueCombineMethod ExternalTorqueCombineMethod;
 
 	float Re;		// [cm] Effective Wheel Radius could change dynamically if get a flat?, tire shreds
+	float WheelWidth; // [cm] Effective Wheel Width
+	float WheelPivotPointOffset; // Y wheel pivot point offset
 	float Omega;	// [radians/sec] Wheel Rotation Angular Velocity
 	float Sx;
 	float Inertia;
@@ -459,7 +497,9 @@ public:
 	bool bInContact;			// Is tire in contact with the ground or free in the air
 	uint32 WheelIndex;			// purely for debugging purposes
 	bool bEngineBraking;		// Is the braking force coming from the engine
-
+	
+	float MaxWheelCollisionAngle; // Maximum angle for advanced sphere cast, based on wheel radius & width
+	
 	public:
 	// debug for now
 	float AppliedLinearDriveForce;
@@ -472,7 +512,6 @@ public:
 	FVector InputForces;
 	bool bClipping;
 	bool bABSActivated;
-
 };
 
 
